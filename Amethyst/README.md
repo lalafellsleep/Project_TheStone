@@ -5,6 +5,7 @@ lastst stable version get here: http://amethyst.ffxiv.io/<br>
 > but If you doesn't using ACTWebSocket, This overlay can't display your encounter data.<br>
 > *Please* below read HOW To USE
 
+![image](https://github.com/laiglinne-ff/Project_TheStone/blob/master/Amethyst/Honeycam%202017-12-09%2022-55-45.gif)
 
 > Welcome your Issues and Suggestions → [ISSUES](https://github.com/laiglinne-ff/Project_TheStone/issues) 
 

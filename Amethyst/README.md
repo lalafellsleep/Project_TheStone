@@ -3,7 +3,7 @@
 lastst stable version get here: http://amethyst.ffxiv.io/<br>
 > ok, This Link... You can open browser.<br>
 > but If you doesn't using ACTWebSocket, This overlay can't display your encounter data.<br>
-> *Please* below read HOW To USE
+> *Please* read below HOW To USE
 
 ![image](https://github.com/laiglinne-ff/Project_TheStone/blob/master/Amethyst/Honeycam%202017-12-09%2022-55-45.gif)
 > *THIS IMAGE FONT IS CUSTOMIZED BY SETTING. SELF FIND IT (Borda 3 Font)*<br>

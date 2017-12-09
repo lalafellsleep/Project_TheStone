@@ -1,6 +1,9 @@
 # !! DO NOT DOWNLOAD THIS REPO !!
 
-lastst stable version get here: http://amethyst.ffxiv.io/
+lastst stable version get here: http://amethyst.ffxiv.io/<br>
+> ok, This Link... You can open browser.
+> but If you doesn't using ACTWebSocket, This overlay can't display your encounter data.
+> *Please* below read HOW To USE
 
 # < HOW TO USE > (EN)
 [ACTWebSocket Download](https://github.com/ZCube/ACTWebSocket/releases)

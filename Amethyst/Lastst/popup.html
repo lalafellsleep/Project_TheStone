@@ -549,8 +549,6 @@
 			rgba.g = parseInt($(editor).find(".cg").val() == "" ? 0 : $(editor).find(".cg").val());
 			rgba.b = parseInt($(editor).find(".cb").val() == "" ? 0 : $(editor).find(".cb").val());
 			rgba.a = parseInt($(editor).find(".ca").val() == "" ? 0 : $(editor).find(".ca").val()) / 100;
-
-			console.log($(editor));
 		}
 		else
 		{
@@ -583,8 +581,6 @@
 		h /= 6;
 
 		var hrgb = rxx(h, 1, 0.5);
-
-		console.log(s, v);
 
 		$(editor).find(".colorpicker").css({"left": Math.round(s * 255)+"px", "top":255 - Math.round(v*255)+"px"});
 		$(editor).find(".hue>.pickslider").css("top", Math.round(h * 255)+"px");

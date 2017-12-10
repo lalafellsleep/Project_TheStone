@@ -59,9 +59,14 @@ var languagePack = {
 			"c_tanker":"방어 역할",
 			"c_healer":"회복 역할",
 			"c_dps":"공격 역할",
-			"etcicon":"기타 설정",
+			"etcicon":"막대 일반 설정",
 			"overhealcolor":"오버힐 색상",
-			"iconglow":"직업 아이콘 글로우 색"
+			"iconglow":"직업 아이콘 글로우 색",
+			"fonts":"폰트 스타일",
+			"fontsize":"폰트 크기",
+
+			"columnset":"항목 설정",
+			"setting-in-out":"설정 내보내기/들여오기"
 		},
 		"html":{
 			"lang-setting":"설정"
@@ -77,7 +82,17 @@ var languagePack = {
 			"notuse":"Aquamarin Diamond (사용 안 함)",
 			"nameval1":"Aquamarin D. (뒷 이름 줄이기)",
 			"nameval2":"A. Diamond (앞 이름 줄이기)",
-			"nameval3":"A. D. (모두 줄이기)"
+			"nameval3":"A. D. (모두 줄이기)",
+			
+			"setexport":"Copy textbox content, you can save and share this.",
+			"setimport":"Or, if you have Setting JSON. Paste that below textbox and press Allow button.",
+
+			"set-gen":"일반",
+			"set-bgs":"배경 이미지",
+			"set-col":"표시 항목 설정",
+			"set-gnb":"막대 일반 설정",
+			"set-adb":"막대 상세 설정",
+			"set-xim":"설정 내보내기/들여오기"
 		},
 		"columns":{
 			"encdps":"DPS",
@@ -155,11 +170,14 @@ var languagePack = {
 			"c_tanker":"Tanker",
 			"c_healer":"Healer",
 			"c_dps":"DPS",
-			"etcicon":"Other Setting",
+			"etcicon":"Bar General Setting",
 			"overhealcolor":"Overheal Color",
 			"iconglow":"Icon Glow Color",
 			"fonts":"General Font Style",
-			"fontsize":"General Font Size"
+			"fontsize":"General Font Size",
+			
+			"columnset":"Column Setting",
+			"setting-in-out":"Set Export/Import"
 		},
 		"html":{
 			"lang-setting":"Setting"
@@ -175,7 +193,17 @@ var languagePack = {
 			"notuse":"Aquamarin Diamond",
 			"nameval1":"Aquamarin D.",
 			"nameval2":"A. Diamond",
-			"nameval3":"A. D."
+			"nameval3":"A. D.",
+
+			"setexport":"Copy textbox content, you can save and share this.",
+			"setimport":"Or, if you have Setting JSON. Paste that below textbox and press Allow button.",
+			
+			"set-gen":"General",
+			"set-bgs":"Background",
+			"set-col":"Columns",
+			"set-gnb":"Bar General",
+			"set-adb":"Bar Advanced",
+			"set-xim":"Set Export/Import"
 		},
 		"columns":{
 			"encdps":"DPS",

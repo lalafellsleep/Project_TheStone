@@ -2,100 +2,28 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=720, user-scalable=no">
 	<title>Fancy Detail Setting Window</title>
-	<script src="js/jquery-3.2.1.min.js"></script><link href="//fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet" /><link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet" /><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-	<style>
-	html, body{margin:0px; padding:0px;} html{background:#F0F0F0;} * {font-family:'맑은 고딕';} .header{height:56px; background:#9C77D5; color:#FFF; box-shadow:0px 0px 4px #000; line-height:56px; padding-left:30px; font-size:18px; position:fixed; left:0px; right:0px; top:0px; z-index:9;} .content{position:fixed; left:0px; top:56px; right:0px; bottom:0px; overflow:auto;} .content>.group{position:relative; background:#FFF; box-shadow:0px 1px 2px rgba(0,0,0,0.5); max-width:680px; margin:0 auto; margin-top:48px;} .content>.group::before{display:block; content:attr(label); position:absolute; height:48px; line-height:48px; font-size:14px; top:-48px;} .content>.group>.item {padding:15px; border-bottom:1px solid #E8E8E8; text-align:right; line-height:20px; min-height:20px; cursor:pointer;} .content>.group>.item:last-child {border-bottom:0px;} .content>.group>.item::before {content:attr(label); float:left;} .content>.group>.item>.switch {display:inline-block; width:30px; height:12px; border-radius:15px; background:rgba(128, 128, 128, .5); margin-right:8px; margin-top:5px; position:relative;} .content>.group>.item>.switch::before{height:16px; width:16px; left:-4px; position:absolute; background:#EFEFEF; content:" "; top:-2px; border-radius:8px; box-shadow:0px 1px 2px rgba(0,0,0,0.5); transition:.1s; z-index:4;} .content>.group>.item>.switch[data-checked=true]::before{left:16px; background:rgb(79, 38, 150);} .content>.group>.item>.switch::after{content:" "; position:Absolute; left:0px; top:0px; height:12px; border-radius:6px; background:rgba(102, 0, 255, 0.5); width:0px; transition:.1s;} .content>.group>.item>.switch[data-checked=true]::after{width:24px;} .viewAdvanced { color:#333; text-align:center; font-size:14px; margin-top:20px; margin-bottom:20px; } .viewAdvanced::before{content:attr(label);} .viewAdvanced::after{font-size:10px; margin-left:10px; content:"▼";} .viewAdvanced[data-toggle=true]::after { content:"▲"; } .item>input {float:right; margin-right:10px;} .view{display:inline-block; height:21px; float:right; font-size:12px; color:#AAA; margin-right:10px;} .view::after{content:attr(after);} .view::before{content:attr(before);} input[type=range] {appearance:none; -webkit-appearance:none; outline:none; height:12px; background:rgba(128,128,128,.5); border-radius:6px; margin-top:4px;} input[type=range]::-webkit-slider-thumb{appearance:none; -webkit-appearance:none; width:16px; height:16px; border-radius:8px; background:#EFEFEF; box-shadow:0px 1px 2px rgba(0,0,0,0.5); cursor:pointer;} input[type=range]::-moz-range-thumb {width:16px; height:16px; background:rgba(75, 0, 187, .5);}
-
-	.content>.group>.item>select {-webkit-appearance:none; outline:none; border:none; border-bottom:2px solid rgba(102, 0, 255, 0.5); width:250px; text-align:center; background-image:url(./image/down.svg); background-repeat:no-repeat; background-position:100% 50%;}
-	
-	.coloreditor { display:inline-block; position:relative; width:100%; height:319px; box-sizing:border-box; overflow:hidden; margin-bottom:5px;}
-	.coloreditor::before {content:attr(label); position:absolute; left:0px; top:0px; line-height:28px;}
-	.coloreditor:last-child {margin-bottom:0px;}
-	.coloreditor>.backbg {background:#333; position:absolute; width:300px; top:28px; right:0px; bottom:0px;}
-	.coloreditor>.backbg::before {background:#333; position:absolute; content:" "; right:0px; top:-28px; height:28px; width:90px;}
-	.coloreditor, .coloreditor * {
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-o-user-select: none;
-	user-select: none;}
-	.coloreditor>.pickcolorx {width:256px; height:256px; position:absolute; right:39px; top:58px; background:linear-gradient(to right, #FFF 0%, #F00 100%); overflow:hidden;}
-	.coloreditor>.pickcolorx>.colorarea {width:256px; height:256px; background:linear-gradient(to bottom, transparent 0%, #000 100%);}
-	.coloreditor>.pickcolorx>.colorpicker {width:7px; height:7px; position:absolute; left:255px; top:0px; margin-left:-4px; margin-top:-4px; border:1px solid #FFF; border-radius:7px; box-shadow:0px 0px 1px #555, 0px 0px 1px #333, 0px 0px 1px #333, 0px 0px 1px #333, 0px 0px 1px #333;}
-	.coloreditor>.hue {position:absolute; right:5px; top:58px; height:256px; width:12px; background:linear-gradient(to bottom, #F00 0%, #FF0 17%, #0F0 33%, #0FF 50%, #00F 67%, #F0F 83%, #F00 100%);}
-	.coloreditor>.transparent {position:absolute; top:58px; right:22px; height:256px; background:url(./image/transparentbg.png); width:12px;}
-	.coloreditor>.transparent>.pickcolor {background:linear-gradient(to bottom, #F00 0%, transparent 100%); width:100%; height:100%;}
-	.coloreditor>.pickedcolorbg {position:absolute; top:2px; right:2px; height:24px; width:86px; background:url(./image/transparentbg.png); color:#FFF; }
-	.coloreditor>.pickedcolorbg>.pickedcolor {height:100%; text-align:left; font-size:13px; line-height:24px; padding-left:6px; text-shadow:0px 0px 1px #000, 0px 0px 1px #000, 0px 0px 1px #000, 0px 0px 1px #000;}
-	.coloreditor>.pickarea {position:Absolute; right:39px; top:58px; width:256px; height:256px; z-index:10;}
-	.coloreditor>.huearea {position:Absolute; right:5px; top:58px; width:12px; height:256px; z-index:11;}
-	.coloreditor>.transparentarea {position:Absolute; right:22px; top:58px; width:12px; height:256px; z-index:10;}
-	.coloreditor .pickslider {width:12px; position:absolute; left:-1px; top:0px; right:0px; height:1px; border:1px solid #FFF; box-shadow:0px 0px 1px #555, 0px 0px 1px #333, 0px 0px 1px #333, 0px 0px 1px #333, 0px 0px 1px #333;}
-
-	.coloreditor>.inputrgb {position:absolute; -webkit-appearance:none; background:rgba(0,0,0,.5); border:0px; padding:2px; color:#FFF; z-index:15; width:68px; height:20px; outline:none;}
-	.coloreditor>.cr {right:226px; top:33px; width:70px;}
-	.coloreditor>.cg {right:152px; top:33px; width:70px;}
-	.coloreditor>.cb {right:78px; top:33px; width:70px;}
-	.coloreditor>.ca {right:5px; top:33px;}
-
-	.coloreditor>.xa, .coloreditor>.xr, .coloreditor>.xg, .coloreditor>.xb {color:#FFF; position:absolute; top:33px; width:8px; height:20px; line-height:20px; right:229px; text-decoration:none; font-style:normal; font-size:12px;}
-	.coloreditor>.xg {right:155px;}
-	.coloreditor>.xb {right:81px;}
-	.coloreditor>.xa {right:10px;}
-
-	.coloreditor>.reset {position:absolute; right:88px; top:0px; width:28px; height:28px; background:#333; color:#FFF; text-align:center;}
-	.coloreditor>.reset>i {font-size:24px; line-height:28px;}
-
-	.imageurlpicker { display:inline-block; position:relative; width:100%; box-sizing:border-box; overflow:hidden;}
-	.imageurlpicker::before {content:attr(label); position:absolute; left:0px; top:0px; line-height:28px;}
-	.imageurlpicker>.imagearea {width:400px; height:300px; background:url(./image/transparentbg.png); border:2px solid #333; margin-left:246px; overflow:hidden;}
-	.imageurlpicker>.imagearea>.image {width:100%; height:100%;}
-	.imageurlpicker>.inputarea {width:100%; height:28px; background:#333; position:relative; margin-top:30px;}
-	.imageurlpicker>.inputarea>input {position:absolute; left:2px; top:2px; border:0px; outline:none; width:calc(100% - 74px); padding:4px; box-sizing:border-box; height:26px;}
-	.imageurlpicker>.inputarea>.chk, .imageurlpicker>.inputarea>.deleteimg {position:absolute; color:#FFF; top:3px;}
-	.imageurlpicker>.inputarea>.chk {right:40px;}
-	.imageurlpicker>.inputarea>.deleteimg {right:8px;}
-	.imageurlpicker>.remotectrl {position:absolute; top:58px; right:404px; left:0px; bottom:0px; background:#333; cursor:default;}
-	.imageurlpicker>.remotectrl>textarea {position:absolute; left:2px; outline:none; bottom:2px; height:120px; width:244px;border:0px; resize:none; }
-	.imageurlpicker>.remotectrl>.label {position:absolute; bottom:120px; left:0px; color:#FFF; height:20px; line-height:18px; padding-left:10px; font-size:14px; content:"CSS Filter"}
-	.imageurlpicker>.remotectrl>.imagealign {position:absolute; left:4px; top:22px; text-align:left; width:102px;}
-	.imageurlpicker>.remotectrl>.imagealign::before,
-	.imageurlpicker>.remotectrl>.sizeoption::before {position:absolute; top:-20px; left:0px; color:#FFF; height:20px; line-height:18px; padding-left:10px; font-size:14px; content:attr(label);}
-	.imageurlpicker>.remotectrl>.imagealign>button {display:inline-block; width:32px; height:32px; margin-left:2px; margin-bottom:2px; border:none; font-size:20px; line-height:30px; outline:none;}
-	.imageurlpicker>.remotectrl>.imagealign>button[data-checked=true] {background:rgba(205, 171, 255, 0.5); color:#FFF;}
-
-	.imageurlpicker>.remotectrl>.sizeoption {width:130px; left:112px; top:22px; position:absolute;}
-	.imageurlpicker>.remotectrl>.sizeoption>button {display:block; width:100%; box-sizing:border-box; border:none; height:32px; margin-bottom:2px; outline:none;}
-	.imageurlpicker>.remotectrl>.sizeoption>button[data-checked=true] {background:rgba(205, 171, 255, 0.5); color:#FFF;}
-
-	.savebtn, .resetbtn {position:fixed; right:30px; top:13px; z-index:999; border:none; background:rgb(171, 115, 255); height:30px; line-height:26px; color:#FFF; box-shadow:0px 0px 3px rgba(75, 0, 187, .5); font-size:13px; width:80px; outline:none; border-radius:3px; transition:.4s;}
-	.savebtn:hover, .resetbtn:hover {filter:brightness(1.2); -webkit-filter:brightness(1.2);}
-
-	.resetbtn {right:130px;}
-
-	.alarm::after {animation-name:alert; animation-duration:1s; animation-timing-function:linear; animation-iteration-count:infinite; border:1px solid #FFF; box-sizing:border-box; z-index:1000; position:absolute; content:" "; width:100%; height:100%; left:0px; top:0px; border-radius:3px; filter:drop-shadow(0px 0px 3px rgb(165, 97, 255)); -webkit-filter:drop-shadow(0px 0px 3px rgb(165, 97, 255));}
-
-	.item>input[type=text] {border:none; border-bottom:2px solid rgba(102, 0, 255, 0.5); width:250px; padding:2px;}
-
-	@keyframes alert
-	{
-		0% {transform:scale(1.0) scaleX(1.0);}
-		100% {transform:scale(1.2) scaleY(1.32); opacity:0;}
-	}
-	</style>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<link href="//fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Aldrich" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link href="css/setting.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="header" id="lang-setting">Setting</div>
 	<button onclick="colorSave()" class="savebtn" data-label="savebtn">SAVE</button>
 	<button class="resetbtn" data-label="resetbtn" onclick="option = origopt; 
 	localStorage.setItem('fancyset', JSON.stringify(option)); window.opener.location = window.opener.location; window.close();">RESET</button>
+	<div class="remotecontrol">
+		<div data-label="set-gen" tag="general" default-tag="true" data-selected="true"></div>
+		<div data-label="set-bgs" tag="bgcss"></div>
+		<div data-label="set-col" tag="columnset"></div>
+		<div data-label="set-gnb" tag="barcommon"></div>
+		<div data-label="set-adb" tag="baradvanced"></div>
+		<div data-label="set-xim" tag="setting-in-out"></div>
+	</div>
 	<div class="content">
-		<div class="group" label="User" data-id="user">
-			<div class="item" label="Language" data-id="language">
-				Auto...
-			</div>
-		</div>
-		<div class="group" label="UI" data-id="ui">
+		<div class="group" label="UI" data-id="ui" tag="general">
 			<div class="item" label="" data-id="nickhide">
 				<div class="switch"></div>
 			</div>
@@ -105,7 +33,7 @@
 			<div class="item" label="" data-id="numbanim">
 				<div class="switch"></div>
 			</div>
-			<div class="item" label="" data-id="nickshorter">
+			<div class="item" label="" data-id="nickshorter" style="cursor:default;">
 				<select>
 					<option data-label="notuse" value="n0">Aquamarin Diamond (사용 안 함)</option>
 					<option data-label="nameval1" value="n1">Aquamarin D. (뒷 이름 줄이기)</option>
@@ -114,7 +42,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="group" label="Data" data-id="data">
+		<div class="group" label="Data" data-id="data" tag="general">
 			<div class="item" label="" data-id="hpsallview">
 				<div class="switch"></div>
 			</div>
@@ -122,113 +50,133 @@
 				<div class="switch"></div>
 			</div>
 		</div>
-		<div class="viewAdvanced" label="Advanced Settings" data-id="advancedset"></div>
-		<div class="group" label="CSS" data-id="css" flag="advanced">
-			<div class="item" label="Opacity" data-id="opacity">
-				<input type="range" min="0" max="100" value="100" step="1" />
-				<span class="view" after="%">100</span>
-			</div>
-			<div class="item">
+		<div class="group" label="CSS" data-id="css" flag="advanced" tag="bgcss">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" data-id="bgcolor" notext="true" data-value="rgba(0,0,0,0.0)"></div>
 				<div class="imageurlpicker" label="" back="bgcolor" data-id="image"></div>
 			</div>
 		</div>
-		<div class="group" label="CSS" data-id="etcicon" flag="advanced">
-			<div class="item">
+		<div class="group" label="CSS" data-id="etcicon" flag="advanced" tag="barcommon">
+			<div class="item" label="Opacity" data-id="opacity" style="cursor:default;">
+				<input type="range" min="0" max="100" value="100" step="1" />
+				<span class="view" after="%">100</span>
+			</div>
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" notext="true" data-id="iconglow" data-value="#AB7813"></div>
 			</div>
-			<div class="item" data-id="fonts">
+			<div class="item" data-id="fonts" style="cursor:default;">
 				<input type="text" onchange="colorSave();" />
 			</div>
-			<div class="item" data-id="fontsize">
+			<div class="item" data-id="fontsize" style="cursor:default;">
 				<input type="number" onchange="colorSave();" min="12" max="72"/>
 			</div>
 		</div>
-		<div class="group" label="CSS" data-id="rolecolor" flag="advanced">
-			<div class="item">
+		<div class="group" label="CSS" data-id="rolecolor" flag="advanced" tag="barcommon">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" notext="true" image="background-image:url(./image/icons.png); background-repeat:no-repeat; background-position:-96px -96px; background-size:240px 120px; width:24px; height:24px; filter:drop-shadow(0px 0px 1px ${iconglow}) drop-shadow(0px 0px 1px ${iconglow}); -webkit-filter:drop-shadow(0px 0px 1px ${iconglow}) drop-shadow(0px 0px 1px ${iconglow});" data-id="c_tanker" data-value="#0000A0"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" notext="true" image="background-image:url(./image/icons.png); background-repeat:no-repeat; background-position:-96px -96px; background-size:240px 120px; width:24px; height:24px; filter:drop-shadow(0px 0px 1px ${iconglow}) drop-shadow(0px 0px 1px ${iconglow}); -webkit-filter:drop-shadow(0px 0px 1px ${iconglow}) drop-shadow(0px 0px 1px ${iconglow});" data-id="c_healer" data-value="#00A000"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" notext="true" image="background-image:url(./image/icons.png); background-repeat:no-repeat; background-position:-96px -96px; background-size:240px 120px; width:24px; height:24px; filter:drop-shadow(0px 0px 1px ${iconglow}) drop-shadow(0px 0px 1px ${iconglow}); -webkit-filter:drop-shadow(0px 0px 1px ${iconglow}) drop-shadow(0px 0px 1px ${iconglow});" data-id="c_dps" data-value="#A00000"></div>
 			</div>
 		</div>
-		<div class="group" label="CSS" data-id="tankers" flag="advanced">
-			<div class="item">
+		<div class="group" label="CSS" data-id="tankers" flag="advanced" tag="baradvanced">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="glapldf" notext="true" data-id="glapld" data-value="#88CCCC"></div>
 				<div class="coloreditor" label="" back="glapld" data-id="glapldf" data-value="#CCFFFF"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="mrdwarf" notext="true" data-id="mrdwar" data-value="#921000"></div>
 				<div class="coloreditor" label="" back="mrdwar" data-id="mrdwarf" data-value="#FFCCAA"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="drkf" notext="true" data-id="drk" data-value="#642324"></div>
 				<div class="coloreditor" label="" back="drk" data-id="drkf" data-value="#FFBB88"></div>
 			</div>
 		</div>
-		<div class="group" label="CSS" data-id="healers" flag="advanced">
-			<div class="item">
+		<div class="group" label="CSS" data-id="healers" flag="advanced" tag="baradvanced">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="cnjwhmf" notext="true" data-id="cnjwhm"  data-value="#CFB090"></div>
 				<div class="coloreditor" label="" back="cnjwhm" data-id="cnjwhmf" data-value="#FFEEAA"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="schf" notext="true" data-id="sch"  data-value="#232898"></div>
 				<div class="coloreditor" label="" back="sch" data-id="schf" data-value="#EEFFEE"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="astf" notext="true" data-id="ast"  data-value="#D98028"></div>
 				<div class="coloreditor" label="" back="ast" data-id="astf" data-value="#FFFF99"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" data-id="overhealcolor" data-value="#600000"></div>
 			</div>
 		</div>
-		<div class="group" label="CSS" data-id="dealers" flag="advanced">
-			<div class="item">
+		<div class="group" label="CSS" data-id="dealers" flag="advanced" tag="baradvanced">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="pglmnkf" notext="true" data-id="pglmnk"  data-value="#D9B028"></div>
 				<div class="coloreditor" label="" back="pglmnk" data-id="pglmnkf" data-value="#FFEE99"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="lncdrgf" notext="true" data-id="lncdrg"  data-value="#4968E1"></div>
 				<div class="coloreditor" label="" back="lncdrg" data-id="lncdrgf" data-value="#77CCFF"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="rogninf" notext="true" data-id="rognin"  data-value="#564848"></div>
 				<div class="coloreditor" label="" back="rognin" data-id="rogninf" data-value="#FF6699"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="samf" notext="true" data-id="sam"  data-value="#B1A066"></div>
 				<div class="coloreditor" label="" back="sam" data-id="samf" data-value="#FEFEFE"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="arcbrdf" notext="true" data-id="arcbrd"  data-value="#B4D143"></div>
 				<div class="coloreditor" label="" back="arcbrd" data-id="arcbrdf" data-value="#DDFF77"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="mchf" notext="true" data-id="mch"  data-value="#38B0B4"></div>
 				<div class="coloreditor" label="" back="mch" data-id="mchf" data-value="#BBFFCC"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="thmblmf" notext="true" data-id="thmblm"  data-value="#644696"></div>
 				<div class="coloreditor" label="" back="thmblm" data-id="thmblmf" data-value="#EEBBFF"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="acnsmnf" notext="true" data-id="acnsmn"  data-value="#288A3B"></div>
 				<div class="coloreditor" label="" back="acnsmn" data-id="acnsmnf" data-value="#DDFF77"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="rdmf" notext="true" data-id="rdm"  data-value="#E579A8"></div>
 				<div class="coloreditor" label="" back="rdm" data-id="rdmf" data-value="#FFFFFF"></div>
 			</div>
-			<div class="item">
+			<div class="item" style="cursor:default;">
 				<div class="coloreditor" label="" font="lmbf" notext="true" data-id="lmb"  data-value="#FFB000"></div>
 				<div class="coloreditor" label="" back="lmb" data-id="lmbf" data-value="#FFFFFF"></div>
 			</div>
 		</div>
-		<div style="height:35px;"></div>
+		<div class="group" label="" data-id="columnset" tag="columnset">
+			<div class="item" style="cursor:default; position:relative; overflow:auto;">
+				<div style="height:50px; position:relative;">
+					<div data-label="columnsetdesc" style="text-align:left;">You can dragging order, Double click switch show/hide</div>
+					<div style="left:10px; top:30px; position:absolute;">Data name</div>
+					<div style="left:342px; top:30px; position:absolute;">Data name</div>
+					<div style="left:238px; top:30px; position:absolute;">Width</div>
+					<div style="left:570px; top:30px; position:absolute;">Width</div>
+				</div>
+				<ul id="sortable-dps"></ul>
+				<ul id="sortable-hps"></ul>
+			</div>
+		</div>
+		<div class="group" label="" data-id="setting-in-out" tag="setting-in-out">
+			<div class="item" style="cursor:default; position:relative; overflow:auto;">
+				<div data-label="setexport" style="padding:5px;"></div>
+				<textarea id="settingtxt" disabled="disabled" style="resize:none; width:100%; height:180px; overflow:auto; user-select: all; -webkit-user-select: all;"></textarea><br>
+				<div data-label="setimport" style="padding:5px;"></div>
+				<textarea id="settingtxt_import" style="resize:none; width:100%; height:180px; overflow:auto; user-select: all; -webkit-user-select: all;"></textarea>
+				<div class="allowbtn" onclick="allowset();">Allow Setting File</div>
+			</div>
+		</div>
 	</div>
 </body>
 <style id="tmp">
@@ -236,804 +184,931 @@
 </style>
 <script src="js/lang.js"></script>
 <script>
-	var set = JSON.parse(localStorage.getItem("fancyset"));
-	if(set != null)
-		option = set;
+var set = JSON.parse(localStorage.getItem("fancyset"));
+if (set != null)
+	option = set;
+	
+var columnarray = ["encdps", "damage", "crithit%", "maxhit", "swings", "misses", "deaths"];
+var columnarrayhps = ["enchps", "healed", "effectiveHeal", "damageShield", "overHeal%"];
+var dps = [ 
+	"encdps",
+	"damage",
+	"crithit%",
+	"maxhit",
+	"swings",
+	"misses",
+	"deaths",
 
-	function colorSave()
+	"BlockPct",
+	"crithits",
+	"CritDirectHit%",
+	"dps",
+	"damage%",
+	"damagetaken",
+	"DirectHit%",
+	"duration",
+	"kills",
+	"Last10DPS",
+	"Last30DPS",
+	"Last60DPS",
+	"Last180DPS",
+	"maxhitstr",
+	"maxhitval",
+	"ParryPct",
+	"tohit"
+];
+
+var hps = [
+	"enchps",
+	"healed",
+	"effectiveHeal",
+	"damageShield",
+	"overHeal%",
+
+	"cures",
+	"OverHealPct",
+	"absorbHeal",
+	"critheal%",
+	"critheals",
+	"healed%",
+	"heals",
+	"healstaken",
+	"hps",
+	"maxheal",
+	"maxhealstr",
+	"maxhealval",
+	"overHeal",
+	"powerdrain",
+	"powerheal",
+];
+var smallColumns = ["deaths", "misses", "swings", "hits"];
+var largeColumns = ["maxhit", "maxheal"];
+
+if(option.displayeddps == undefined)
+{
+	for(var i in dps)
 	{
-		$('#tmp').html('* {font-family:"' + option.fonts + '"}');
-		$(".coloreditor").each(function()
-		{
-			option[$(this).attr("data-id")] = $(this).find(".pickedcolor").attr("data-value");
-			$(this).attr("data-hide", "true");
-			$(this).css("height", "28px");
-		});
-		option["backgroundimg"] = $(".imageurlpicker>.imagearea>.image").attr("style");
-		window.opener.option = option;
-		$(".savebtn").removeClass("alarm");
-		window.opener.setCSS();
-		saveSetting();
-		attrs();
+		var x = 50;
+		if(smallColumns.indexOf(dps[i]) > -1)
+			x = 42;
+		if(largeColumns.indexOf(dps[i]) > -1)
+			x = 150;
+
+		if(columnarray.indexOf(dps[i]) > -1)
+			$("#sortable-dps").append("<li dat=\"" + dps[i] + "\" data-view=\"true\">" + dps[i] + "<input type='number' min='42' max='300' value='" + x + "' /></li>");
+		else
+			$("#sortable-dps").append("<li dat=\"" + dps[i] + "\">" + dps[i] + "<input type='number' min='42' max='300' value='" + x + "' /></li>");
+	}
+}
+else
+{
+	for(var i in option.displayeddps)
+	{
+		if(option.displayeddps[i].view)
+			$("#sortable-dps").append("<li dat=\"" + option.displayeddps[i].name + "\" data-view=\"" + option.displayeddps[i].view + "\">" + option.displayeddps[i].name + "<input type='number' min='42' max='300' value='" + option.displayeddps[i].width + "' /></li>");
 	}
 
-	$("select,input").change(function()
+	for(var i in option.displayeddps)
 	{
-		option[$(this).parent().attr("data-id")] = $(this).val();
-		window.opener.setCSS();
-		
-		saveSetting();
+		if(!option.displayeddps[i].view)
+			$("#sortable-dps").append("<li dat=\"" + option.displayeddps[i].name + "\" data-view=\"" + option.displayeddps[i].view + "\">" + option.displayeddps[i].name + "<input type='number' min='42' max='300' value='" + option.displayeddps[i].width + "' /></li>");
+	}
+}
+
+if(option.displayedhps == undefined)
+{
+	for(var i in hps)
+	{
+		var x = 50;
+		if(smallColumns.indexOf(hps[i]) > -1)
+			x = 42;
+		if(largeColumns.indexOf(hps[i]) > -1)
+			x = 150;
+
+		if(columnarrayhps.indexOf(hps[i]) > -1)
+			$("#sortable-hps").append("<li dat=\"" + hps[i] + "\" data-view=\"true\">" + hps[i] + "<input type='number' min='42' max='300' value='" + x + "' /></li>");
+		else
+			$("#sortable-hps").append("<li dat=\"" + hps[i] + "\">" + hps[i] + "<input type='number' min='42' max='300' value='" + x + "' /></li>");
+	}
+}
+else
+{
+	for(var i in option.displayedhps)
+	{
+		if(option.displayedhps[i].view)
+			$("#sortable-hps").append("<li dat=\"" + option.displayedhps[i].name + "\" data-view=\"" + option.displayedhps[i].view + "\">" + option.displayedhps[i].name + "<input type='number' min='42' max='300' value='" + option.displayedhps[i].width + "' /></li>");
+	}
+
+	for(var i in option.displayedhps)
+	{
+		if(!option.displayedhps[i].view)
+			$("#sortable-hps").append("<li dat=\"" + option.displayedhps[i].name + "\" data-view=\"" + option.displayedhps[i].view + "\">" + option.displayedhps[i].name + "<input type='number' min='42' max='300' value='" + option.displayedhps[i].width + "' /></li>");
+	}
+}
+
+
+
+$("#sortable-dps>li").dblclick(function()
+{
+	if($(this).attr("data-view") != "true")
+	{
+		$(this).attr("data-view", "true");
+	}
+	else
+	{
+		$(this).attr("data-view", "false");
+	}
+});
+
+$("#sortable-dps, #sortable-hps").sortable();
+$(".group").each(function()
+{
+	if($(this).attr("tag") != undefined)
+	{
+		if($(this).attr("tag") != "general")
+		{
+			$(this).hide();
+		}
+	}
+	else
+	{
+		$(this).hide();
+	}
+})
+
+$(".remotecontrol>div").click(function()
+{
+	$(".remotecontrol>div").removeAttr("data-selected");
+	$(this).attr("data-selected","true");
+	$(".group").hide();
+	$(".group[tag=" + $(this).attr("tag") + "]").show();
+});
+
+function colorSave() {
+	option.displayeddps = [];
+	$("#sortable-dps>li").each(function()
+	{
+		var width = parseInt($(this).find("input").val());
+		if( width < 42 ) width = 50;
+
+		var itemname = $(this).attr("dat");
+		var view = $(this).attr("data-view");
+
+		option.displayeddps.push({"name":itemname, "view":view=="true"?!0:!1, "width":width });
 	});
 
-	function saveSetting()
+	option.displayedhps = [];
+	$("#sortable-hps>li").each(function()
 	{
-		localStorage.setItem("fancyset", JSON.stringify(option));
+		var width = parseInt($(this).find("input").val());
+		if( width < 42 ) width = 50;
 
-		window.opener.option = option;
-		if(window.opener.lastCombat != null)
-		{
-			window.opener.lastCombat.AttachPets();
-			window.opener.lastCombat.resort();
-			window.opener.lastCombatHPS.AttachPets();
-			window.opener.lastCombatHPS.resort();
-		}
-		window.opener.createHeader();
-		window.opener.listResort();
+		var itemname = $(this).attr("dat");
+		var view = $(this).attr("data-view");
+
+		option.displayedhps.push({"name":itemname, "view":view=="true"?!0:!1, "width":width });
+	});
+
+	$("#sortable-dps").html("");
+	$("#sortable-hps").html("");
+
+	for(var i in option.displayeddps)
+	{
+		if(option.displayeddps[i].view)
+			$("#sortable-dps").append("<li dat=\"" + option.displayeddps[i].name + "\" data-view=\"" + option.displayeddps[i].view + "\">" + option.displayeddps[i].name + "<input type='number' min='42' max='300' value='" + option.displayeddps[i].width + "' /></li>");
 	}
 
-	function setRGB(t, object, g, b, a)
+	for(var i in option.displayeddps)
 	{
-		var $t = $(t);
-		
-		if(typeof object === "undefined")
-		{
-			var $p = $t.parent();
-			setCEtoRGB($t, parseInt($p.find(".cr").val()), parseInt($p.find(".cg").val()), parseInt($p.find(".cb").val()), parseInt($p.find(".ca").val()) / 100);
-		}
-		else if(typeof object !== "number")
-		{
-			setCEtoRGB($($t[0]), object.r, object.g, object.b, object.a);
-		}
-		else
-		{
-			setCEtoRGB($t, object, g, b, a);
-		}
+		if(!option.displayeddps[i].view)
+			$("#sortable-dps").append("<li dat=\"" + option.displayeddps[i].name + "\" data-view=\"" + option.displayeddps[i].view + "\">" + option.displayeddps[i].name + "<input type='number' min='42' max='300' value='" + option.displayeddps[i].width + "' /></li>");
 	}
 
-	function setCEtoRGB(t, r, g, b, a)
+	for(var i in option.displayedhps)
 	{
-		var rgba = {"r":r, "g":g, "b":b, "a":a};
-		if(a==undefined) a = 1;
-		r /= 255, g /= 255, b /= 255;
-		var max = Math.max(r, g, b), min = Math.min(r, g, b);
-		var h, s, v = max;
-		var d = max - min;
-		s = max == 0 ? 0 : d / max;
-		if(max == min)
-		{
-			h = 0;
-		}
-		else
-		{
-			if(r == max)
-				h = (g-b)/d+(g<b?6:0);
-			else if(g == max)
-				h = (b-r)/d+2;
-			else if(b == max)
-				h = (r-g)/d+4;
-		}
-
-		h /= 6;
-
-		$editor = $(t);
-		if(t.length > 0)
-		{
-			if(t[0].className == "item")
-			{
-				$editor = $(t[0]).find(".coloreditor");
-			}
-			else if(t[0].className == "coloreditor")
-			{
-				$editor = $(t[0]);
-			}
-		}
-		else
-		{
-			if(t.className != "coloreditor")
-			{
-				$editor = $(t).find(".coloreditor");
-			}
-			else
-			{
-				$editor = t;
-			}
-		}
-
-		$editor.find(".colorpicker").css({"left": Math.round(s * 255)+"px", "top":255 - Math.round(v*255)+"px"});
-		$editor.find(".hue>.pickslider").css("top", Math.round(h * 255)+"px");
-		$editor.find(".transparent>.pickslider").css("top", 255 - Math.round(rgba.a * 255)+"px");
-
-		getColor($editor, false);
-		
-		var sl = getSL($editor);
-		$pick = $editor.find(".pickedcolor");
-
-		$editor.find(".cr").val(rgba.r);
-		$editor.find(".cg").val(rgba.g);
-		$editor.find(".cb").val(rgba.b);
-		$editor.find(".ca").val(Math.round(rgba.a * 100));
-		setRGBA($editor);
+		if(option.displayedhps[i].view)
+			$("#sortable-hps").append("<li dat=\"" + option.displayedhps[i].name + "\" data-view=\"" + option.displayedhps[i].view + "\">" + option.displayedhps[i].name + "<input type='number' min='42' max='300' value='" + option.displayedhps[i].width + "' /></li>");
 	}
 
-	function getOpacity(t)
+	for(var i in option.displayedhps)
 	{
-		return ((255 - $(t).parent().find(".transparent>.pickslider").position().top) / 255).toFixed(2);
-	}
-
-	function getSL(t)
-	{
-		$p = $(t).parent().find(".colorpicker").position();
-		var s = $p.left / 255 * 100;
-		var y = $p.top / 255 * 100;
-		var l = (((100 - y) * ((100 - s) / 100)) + (100 - y)) / 2;
-
-		return [s / 100, l / 100];
-	}
-
-	function getHue(t)
-	{
-		return $(t).parent().find(".hue>.pickslider").position().top / 255;
+		if(!option.displayedhps[i].view)
+			$("#sortable-hps").append("<li dat=\"" + option.displayedhps[i].name + "\" data-view=\"" + option.displayedhps[i].view + "\">" + option.displayedhps[i].name + "<input type='number' min='42' max='300' value='" + option.displayedhps[i].width + "' /></li>");
 	}
 	
-	function rxx(h, s, l)
-	{
-		var r, g, b;
+	$('#tmp').html('* {font-family:"' + option.fonts + '"}');
+	$(".coloreditor").each(function() {
+		option[$(this).attr("data-id")] = $(this).find(".pickedcolor").attr("data-value");
+		$(this).attr("data-hide", "true");
+		$(this).css("height", "28px");
+	});
+	option["backgroundimg"] = $(".imageurlpicker>.imagearea>.image").attr("style");
+	window.opener.option = option;
+	$(".savebtn").removeClass("alarm");
+	window.opener.setCSS();
+	saveSetting();
+	attrs();
+	$("#settingtxt").val(JSON.stringify(option, null, 4));
+}
 
-		if(s == 0)
-		{
-			r = g = b = l; // achromatic
-		}
-		else
-		{
-			var hue2rgb = function hue2rgb(p, q, t)
-			{
-				if(t < 0) t += 1;
-				if(t > 1) t -= 1;
-				if(t < 1/6) return p + (q - p) * 6 * t;
-				if(t < 1/2) return q;
-				if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-				return p;
-			}
+$("select,input").change(function() {
+	option[$(this).parent().attr("data-id")] = $(this).val();
+	window.opener.setCSS();
 
-			var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-			var p = 2 * l - q;
-			r = hue2rgb(p, q, h + 1/3);
-			g = hue2rgb(p, q, h);
-			b = hue2rgb(p, q, h - 1/3);
-		}
+	saveSetting();
+});
 
-		return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+function saveSetting() {
+	localStorage.setItem("fancyset", JSON.stringify(option));
+
+	window.opener.option = option;
+	if (window.opener.lastCombat != null) {
+		window.opener.lastCombat.AttachPets();
+		window.opener.lastCombat.resort();
+		window.opener.lastCombatHPS.AttachPets();
+		window.opener.lastCombatHPS.resort();
+	}
+	window.opener.createHeader();
+	window.opener.listResort();
+}
+
+function setRGB(t, object, g, b, a) {
+	var $t = $(t);
+
+	if (typeof object === "undefined") {
+		var $p = $t.parent();
+		setCEtoRGB($t, parseInt($p.find(".cr").val()), parseInt($p.find(".cg").val()), parseInt($p.find(".cb").val()), parseInt($p.find(".ca").val()) / 100);
+	} else if (typeof object !== "number") {
+		setCEtoRGB($($t[0]), object.r, object.g, object.b, object.a);
+	} else {
+		setCEtoRGB($t, object, g, b, a);
+	}
+}
+
+function setCEtoRGB(t, r, g, b, a) {
+	var rgba = {
+		"r": r,
+		"g": g,
+		"b": b,
+		"a": a
+	};
+	if (a == undefined) a = 1;
+	r /= 255, g /= 255, b /= 255;
+	var max = Math.max(r, g, b),
+		min = Math.min(r, g, b);
+	var h, s, v = max;
+	var d = max - min;
+	s = max == 0 ? 0 : d / max;
+	if (max == min) {
+		h = 0;
+	} else {
+		if (r == max)
+			h = (g - b) / d + (g < b ? 6 : 0);
+		else if (g == max)
+			h = (b - r) / d + 2;
+		else if (b == max)
+			h = (r - g) / d + 4;
 	}
 
-	function getColor(t,b)
-	{
-		
-		$(".savebtn").addClass("alarm");
-		var h = getHue(t);
-		var sl = getSL(t);
-		var opacity = getOpacity(t);
+	h /= 6;
 
-		var r, g, b;
-		if(sl[0] == 0)
-		{
-			r=g=b=sl[1];
+	$editor = $(t);
+	if (t.length > 0) {
+		if (t[0].className == "item") {
+			$editor = $(t[0]).find(".coloreditor");
+		} else if (t[0].className == "coloreditor") {
+			$editor = $(t[0]);
 		}
-		else
-		{
-			var huergb = function(p, q, t)
-			{
-				if(t < 0) t += 1;
-				if(t > 1) t -= 1;
-				if(t < 1/6) return p + (q - p) * 6 * t;
-				if(t < 1/2) return q;
-				if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-				return p;
-			}
-
-			var q = sl[1] < 0.5 ? sl[1] * (1 + sl[0]) : sl[1] + sl[0] - sl[1] * sl[0];
-			var p = 2 * sl[1] - q;
-			r = huergb(p, q, h + 1/3);
-			g = huergb(p, q, h);
-			b = huergb(p, q, h - 1/3);
-		}
-
-		r=Math.round(r * 255);
-		g=Math.round(g * 255);
-		b=Math.round(b * 255);
-
-		var hrgb = rxx(h, 1, 0.5);
-		$editor = $(t);
-
-		if(t.length > 0)
-		{
-			if(t[0].className == "coloreditor")
-			{
-				$editor = $(t[0]);
-			}
-			else if(t[0].className == "item")
-			{
-				$editor = $(t[0]).find(".coloreditor");
-			}
-			else
-			{
-				$editor = $(t[0]).parent();
-			}
-		}
-		else
-		{
-			if(t.className != "coloreditor")
-			{
-				$editor = $(t).parent();
-			}
-			
-			if(t.className == "item")
-			{
-				$editor = $(t);
-			}
-		}
-
-		$editor.find(".pickcolorx").css({background:"-webkit-gradient(linear, left top, right top, from(#FFF), to(rgb("+hrgb[0]+","+hrgb[1]+","+hrgb[2]+")))"});
-		$editor.find(".pickcolor").css({background:"-webkit-gradient(linear, left top, left bottom, from(rgb("+r+","+g+","+b+")), to(rgba("+r+","+g+","+b+",0)))"});
-		if(b != undefined)
-		{
-			if(b)
-			{
-				$editor.find(".cr").val(r);
-				$editor.find(".cg").val(g);
-				$editor.find(".cb").val(b);
-				$editor.find(".ca").val(Math.round(opacity * 100));
-	
-				setRGBA($editor);
-			}
+	} else {
+		if (t.className != "coloreditor") {
+			$editor = $(t).find(".coloreditor");
+		} else {
+			$editor = t;
 		}
 	}
 
-	function setRGBA(editor)
-	{
-		setTimeout(function()
-		{
-			var rgba = "rgba(" + editor.find(".cr").val()
-			+ ","
-			+ editor.find(".cg").val()
-			+ ","
-			+ editor.find(".cb").val()
-			+ ","
-			+ (editor.find(".ca").val() / 100).toFixed(2)
-			+ ")";
+	$editor.find(".colorpicker").css({
+		"left": Math.round(s * 255) + "px",
+		"top": 255 - Math.round(v * 255) + "px"
+	});
+	$editor.find(".hue>.pickslider").css("top", Math.round(h * 255) + "px");
+	$editor.find(".transparent>.pickslider").css("top", 255 - Math.round(rgba.a * 255) + "px");
 
-			if(editor.attr("back") != undefined)
-			{
-				editor.find(".pickedcolor").attr("data-value", rgba);
-				editor.find(".pickedcolor").css("color", rgba);
-				$(document).find("[data-id=\"" + editor.attr("back") + "\"]>div>.pickedcolor").each(function()
-				{
-					$(this).css("color", rgba);
-				});
-			}
-			else if(editor.attr("font") != undefined)
-			{
-				editor.find(".pickedcolor").attr("data-value", rgba);
-				editor.find(".pickedcolor").css("background", rgba);
-				$(document).find("[data-id=\"" + editor.attr("font") + "\"]>div>.pickedcolor").each(function()
-				{
-					$(this).css("background", rgba);
-				});
-			}
-			else
-			{
-				editor.find(".pickedcolor").attr("data-value", rgba);
-				editor.find(".pickedcolor").css("background", rgba);
-			}
-		}, 100);
+	getColor($editor, false);
+
+	var sl = getSL($editor);
+	$pick = $editor.find(".pickedcolor");
+
+	$editor.find(".cr").val(rgba.r);
+	$editor.find(".cg").val(rgba.g);
+	$editor.find(".cb").val(rgba.b);
+	$editor.find(".ca").val(Math.round(rgba.a * 100));
+	setRGBA($editor);
+}
+
+function getOpacity(t) {
+	return ((255 - $(t).parent().find(".transparent>.pickslider").position().top) / 255).toFixed(2);
+}
+
+function getSL(t) {
+	$p = $(t).parent().find(".colorpicker").position();
+	var s = $p.left / 255 * 100;
+	var y = $p.top / 255 * 100;
+	var l = (((100 - y) * ((100 - s) / 100)) + (100 - y)) / 2;
+
+	return [s / 100, l / 100];
+}
+
+function getHue(t) {
+	return $(t).parent().find(".hue>.pickslider").position().top / 255;
+}
+
+function rxx(h, s, l) {
+	var r, g, b;
+
+	if (s == 0) {
+		r = g = b = l; // achromatic
+	} else {
+		var hue2rgb = function hue2rgb(p, q, t) {
+			if (t < 0) t += 1;
+			if (t > 1) t -= 1;
+			if (t < 1 / 6) return p + (q - p) * 6 * t;
+			if (t < 1 / 2) return q;
+			if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+			return p;
+		}
+
+		var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+		var p = 2 * l - q;
+		r = hue2rgb(p, q, h + 1 / 3);
+		g = hue2rgb(p, q, h);
+		b = hue2rgb(p, q, h - 1 / 3);
 	}
 
-	function colorSet(editor, rgba)
-	{
-		if(rgba == undefined)
-		{
-			if($(editor).is(".inputrgb"))
-				editor = $(editor).parent();
+	return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+}
 
-			var rgba = getstrtorgb($(editor).attr("data-value"));
-			rgba.r = parseInt($(editor).find(".cr").val() == "" ? 0 : $(editor).find(".cr").val());
-			rgba.g = parseInt($(editor).find(".cg").val() == "" ? 0 : $(editor).find(".cg").val());
-			rgba.b = parseInt($(editor).find(".cb").val() == "" ? 0 : $(editor).find(".cb").val());
-			rgba.a = parseInt($(editor).find(".ca").val() == "" ? 0 : $(editor).find(".ca").val()) / 100;
-		}
-		else
-		{
-			$(editor).find(".cr").val(rgba.r);
-			$(editor).find(".cg").val(rgba.g);
-			$(editor).find(".cb").val(rgba.b);
-			$(editor).find(".ca").val(rgba.a * 100);
-		}
-		
-		var r = rgba.r, g = rgba.g, b = rgba.b;
-		r /= 255, g /= 255, b /= 255;
-		var max = Math.max(r, g, b), min = Math.min(r, g, b);
-		var h, s, v = max;
-		var d = max - min;
-		s = max == 0 ? 0 : d / max;
-		if(max == min)
-		{
-			h = 0;
-		}
-		else
-		{
-			if(r == max)
-				h = (g-b)/d+(g<b?6:0);
-			else if(g == max)
-				h = (b-r)/d+2;
-			else if(b == max)
-				h = (r-g)/d+4;
+function getColor(t, b) {
+
+	$(".savebtn").addClass("alarm");
+	var h = getHue(t);
+	var sl = getSL(t);
+	var opacity = getOpacity(t);
+
+	var r, g, b;
+	if (sl[0] == 0) {
+		r = g = b = sl[1];
+	} else {
+		var huergb = function(p, q, t) {
+			if (t < 0) t += 1;
+			if (t > 1) t -= 1;
+			if (t < 1 / 6) return p + (q - p) * 6 * t;
+			if (t < 1 / 2) return q;
+			if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+			return p;
 		}
 
-		h /= 6;
-
-		var hrgb = rxx(h, 1, 0.5);
-
-		$(editor).find(".colorpicker").css({"left": Math.round(s * 255)+"px", "top":255 - Math.round(v*255)+"px"});
-		$(editor).find(".hue>.pickslider").css("top", Math.round(h * 255)+"px");
-		$(editor).find(".transparent>.pickslider").css("top", 255 - Math.round(rgba.a * 255)+"px");
-		$(editor).find(".pickcolorx").css({background:"-webkit-gradient(linear, left top, right top, from(#FFF), to(rgb("+hrgb[0]+","+hrgb[1]+","+hrgb[2]+")))"});
-		$(editor).find(".pickcolor").css({background:"-webkit-gradient(linear, left top, left bottom, from(rgb("+rgba.r+","+rgba.g+","+rgba.b+")), to(rgba("+rgba.r+","+rgba.g+","+rgba.b+",0)))"});
-		setRGBA($(editor));
+		var q = sl[1] < 0.5 ? sl[1] * (1 + sl[0]) : sl[1] + sl[0] - sl[1] * sl[0];
+		var p = 2 * sl[1] - q;
+		r = huergb(p, q, h + 1 / 3);
+		g = huergb(p, q, h);
+		b = huergb(p, q, h - 1 / 3);
 	}
 
-	function attrs()
-	{
-		$(".coloreditor").each(function()
-		{
-			if($(this).attr("image") != undefined)
-			{
-				var x = $(this).attr("image"), s = x;
-				try
-				{
-					x = x.match(/\$\{([^}]+)\}/img);
-					for(var i in x)
-					{
-						if(option[x[i].replace(/\$\{(.*?)\}/, "$1")] != undefined)
-						{
-							s = s.replace(x[i], option[x[i].replace(/\$\{(.*?)\}/, "$1")]);
-						}
-					}
+	r = Math.round(r * 255);
+	g = Math.round(g * 255);
+	b = Math.round(b * 255);
 
-					s += " margin:0 auto;";
-		
-					if($(this).find(".pickedcolor>div").length > 0)
-					{
-						$(this).find(".pickedcolor>div").attr("style", s);
-					}
-					else
-					{
-						$(this).find(".pickedcolor").append("<div style=\"" + s + "\"></div>");
+	var hrgb = rxx(h, 1, 0.5);
+	$editor = $(t);
+
+	if (t.length > 0) {
+		if (t[0].className == "coloreditor") {
+			$editor = $(t[0]);
+		} else if (t[0].className == "item") {
+			$editor = $(t[0]).find(".coloreditor");
+		} else {
+			$editor = $(t[0]).parent();
+		}
+	} else {
+		if (t.className != "coloreditor") {
+			$editor = $(t).parent();
+		}
+
+		if (t.className == "item") {
+			$editor = $(t);
+		}
+	}
+
+	$editor.find(".pickcolorx").css({
+		background: "-webkit-gradient(linear, left top, right top, from(#FFF), to(rgb(" + hrgb[0] + "," + hrgb[1] + "," + hrgb[2] + ")))"
+	});
+	$editor.find(".pickcolor").css({
+		background: "-webkit-gradient(linear, left top, left bottom, from(rgb(" + r + "," + g + "," + b + ")), to(rgba(" + r + "," + g + "," + b + ",0)))"
+	});
+	if (b != undefined) {
+		if (b) {
+			$editor.find(".cr").val(r);
+			$editor.find(".cg").val(g);
+			$editor.find(".cb").val(b);
+			$editor.find(".ca").val(Math.round(opacity * 100));
+
+			setRGBA($editor);
+		}
+	}
+}
+
+function setRGBA(editor) {
+	setTimeout(function() {
+		var rgba = "rgba(" + editor.find(".cr").val() + "," + editor.find(".cg").val() + "," + editor.find(".cb").val() + "," + (editor.find(".ca").val() / 100).toFixed(2) + ")";
+
+		if (editor.attr("back") != undefined) {
+			editor.find(".pickedcolor").attr("data-value", rgba);
+			editor.find(".pickedcolor").css("color", rgba);
+			$(document).find("[data-id=\"" + editor.attr("back") + "\"]>div>.pickedcolor").each(function() {
+				$(this).css("color", rgba);
+			});
+		} else if (editor.attr("font") != undefined) {
+			editor.find(".pickedcolor").attr("data-value", rgba);
+			editor.find(".pickedcolor").css("background", rgba);
+			$(document).find("[data-id=\"" + editor.attr("font") + "\"]>div>.pickedcolor").each(function() {
+				$(this).css("background", rgba);
+			});
+		} else {
+			editor.find(".pickedcolor").attr("data-value", rgba);
+			editor.find(".pickedcolor").css("background", rgba);
+		}
+	}, 100);
+}
+
+function colorSet(editor, rgba) {
+	if (rgba == undefined) {
+		if ($(editor).is(".inputrgb"))
+			editor = $(editor).parent();
+
+		var rgba = getstrtorgb($(editor).attr("data-value"));
+		rgba.r = parseInt($(editor).find(".cr").val() == "" ? 0 : $(editor).find(".cr").val());
+		rgba.g = parseInt($(editor).find(".cg").val() == "" ? 0 : $(editor).find(".cg").val());
+		rgba.b = parseInt($(editor).find(".cb").val() == "" ? 0 : $(editor).find(".cb").val());
+		rgba.a = parseInt($(editor).find(".ca").val() == "" ? 0 : $(editor).find(".ca").val()) / 100;
+	} else {
+		$(editor).find(".cr").val(rgba.r);
+		$(editor).find(".cg").val(rgba.g);
+		$(editor).find(".cb").val(rgba.b);
+		$(editor).find(".ca").val(rgba.a * 100);
+	}
+
+	var r = rgba.r,
+		g = rgba.g,
+		b = rgba.b;
+	r /= 255, g /= 255, b /= 255;
+	var max = Math.max(r, g, b),
+		min = Math.min(r, g, b);
+	var h, s, v = max;
+	var d = max - min;
+	s = max == 0 ? 0 : d / max;
+	if (max == min) {
+		h = 0;
+	} else {
+		if (r == max)
+			h = (g - b) / d + (g < b ? 6 : 0);
+		else if (g == max)
+			h = (b - r) / d + 2;
+		else if (b == max)
+			h = (r - g) / d + 4;
+	}
+
+	h /= 6;
+
+	var hrgb = rxx(h, 1, 0.5);
+
+	$(editor).find(".colorpicker").css({
+		"left": Math.round(s * 255) + "px",
+		"top": 255 - Math.round(v * 255) + "px"
+	});
+	$(editor).find(".hue>.pickslider").css("top", Math.round(h * 255) + "px");
+	$(editor).find(".transparent>.pickslider").css("top", 255 - Math.round(rgba.a * 255) + "px");
+	$(editor).find(".pickcolorx").css({
+		background: "-webkit-gradient(linear, left top, right top, from(#FFF), to(rgb(" + hrgb[0] + "," + hrgb[1] + "," + hrgb[2] + ")))"
+	});
+	$(editor).find(".pickcolor").css({
+		background: "-webkit-gradient(linear, left top, left bottom, from(rgb(" + rgba.r + "," + rgba.g + "," + rgba.b + ")), to(rgba(" + rgba.r + "," + rgba.g + "," + rgba.b + ",0)))"
+	});
+	setRGBA($(editor));
+}
+
+function attrs() {
+	$(".coloreditor").each(function() {
+		if ($(this).attr("image") != undefined) {
+			var x = $(this).attr("image"),
+				s = x;
+			try {
+				x = x.match(/\$\{([^}]+)\}/img);
+				for (var i in x) {
+					if (option[x[i].replace(/\$\{(.*?)\}/, "$1")] != undefined) {
+						s = s.replace(x[i], option[x[i].replace(/\$\{(.*?)\}/, "$1")]);
 					}
 				}
-				catch(ex){}
-			}
-		});
+
+				s += " margin:0 auto;";
+
+				if ($(this).find(".pickedcolor>div").length > 0) {
+					$(this).find(".pickedcolor>div").attr("style", s);
+				} else {
+					$(this).find(".pickedcolor").append("<div style=\"" + s + "\"></div>");
+				}
+			} catch (ex) {}
+		}
+	});
+}
+
+$(".coloreditor").each(function() {
+	var mousedown = false;
+	var $this = $(this);
+	var lx = $this.offsetX;
+	var ly = $this.offsetY;
+	var target;
+	var slider;
+	var hue;
+	var sliderdown = false;
+	var This = this;
+
+	$(this).html('<div class="reset" title="Reset Default"><i class="material-icons">refresh</i></div><div class="backbg"></div><i class="xr">R</i><i class="xg">G</i><i class="xb">B</i><i class="xa">A</i><input class="inputrgb cr" type="number" min="0" max="255" stap="1" label="R" /><input class="inputrgb cg" type="number" min="0" max="255" stap="1" label="G" /><input class="inputrgb cb" type="number" min="0" max="255" stap="1" label="B" /><input class="inputrgb ca" type="number" min="0" max="100" stap="1" label="A" /><div class="pickcolorx"><div class="colorarea"></div><div class="colorpicker"></div></div><div class="hue"><div class="pickslider"></div></div><div class="transparent"><div class="pickcolor"></div><div class="pickslider"></div></div><div class="pickedcolorbg"><div class="pickedcolor" style="background:rgba(255, 0, 0, 1)" data-hide="true">1 Aa 가 あア</div></div><div class="pickarea"></div><div class="huearea"></div><div class="transparentarea"></div>');
+
+	if ($(this).attr("notext") != undefined) {
+		$(this).find(".pickedcolor").html("");
 	}
 
-	$(".coloreditor").each(function()
-	{
-		var mousedown = false;
-		var $this = $(this);
-		var lx = $this.offsetX;
-		var ly = $this.offsetY;
-		var target;
-		var slider;
-		var hue;
-		var sliderdown = false;
-		var This = this;
+	colorSet(this, getstrtorgb($(this).attr("data-value")));
+	attrs();
 
-		$(this).html('<div class="reset" title="Reset Default"><i class="material-icons">refresh</i></div><div class="backbg"></div><i class="xr">R</i><i class="xg">G</i><i class="xb">B</i><i class="xa">A</i><input class="inputrgb cr" type="number" min="0" max="255" stap="1" label="R" /><input class="inputrgb cg" type="number" min="0" max="255" stap="1" label="G" /><input class="inputrgb cb" type="number" min="0" max="255" stap="1" label="B" /><input class="inputrgb ca" type="number" min="0" max="100" stap="1" label="A" /><div class="pickcolorx"><div class="colorarea"></div><div class="colorpicker"></div></div><div class="hue"><div class="pickslider"></div></div><div class="transparent"><div class="pickcolor"></div><div class="pickslider"></div></div><div class="pickedcolorbg"><div class="pickedcolor" style="background:rgba(255, 0, 0, 1)" data-hide="true">1 Aa 가 あア</div></div><div class="pickarea"></div><div class="huearea"></div><div class="transparentarea"></div>');
+	$(this).find(".reset").click(function() {
+		setRGB(This, getstrtorgb($(This).attr("data-value")));
+	});
 
-		if($(this).attr("notext") != undefined)
-		{
-			$(this).find(".pickedcolor").html("");
+	$(this).find(".pickedcolor").click(function() {
+		if ($(this).attr("data-hide") == "true") {
+			$(".coloreditor").css("height", "28px");
+			$(this).parent().parent().css("height", "319px");
+		} else {
+			$(this).parent().parent().css("height", "28px");
 		}
+		var v = $(this).attr("data-hide") == "true" ? "false" : "true";
+		$(".coloreditor").attr("data-hide", "true");
+		$(this).attr("data-hide", v);
+		return false;
+	});
 
-		colorSet(this, getstrtorgb($(this).attr("data-value")));
-		attrs();
+	$(this).css("height", "28px");
 
-		$(this).find(".reset").click(function()
-		{
-			setRGB(This, getstrtorgb($(This).attr("data-value")));
-		});
+	$(this).find("input").change(function(e) {
+		setRGB(e.target);
+		colorSet(this);
+	});
 
-		$(this).find(".pickedcolor").click(function()
-		{
-			if($(this).attr("data-hide") == "true")
-			{
-				$(".coloreditor").css("height", "28px");
-				$(this).parent().parent().css("height", "319px");
+	$(this).find("input").on("input", function(e) {
+		setRGB(e.target);
+		colorSet(this);
+	});
+
+	$(this).find("input").on("mousewheel", function(e) {
+		$(this).val(parseInt($(this).val()) + Math.round(e.originalEvent.wheelDelta / 60));
+
+		if (parseInt($(this).attr("min")) > $(this).val())
+			$(this).val($(this).attr("min"));
+		else if (parseInt($(this).attr("max")) < $(this).val())
+			$(this).val($(this).attr("max"));
+
+		setRGB(e.target);
+		colorSet(this);
+		return false;
+	});
+
+	$(window).mousemove(function(e) {
+		try {
+			if (mousedown) {
+				var x = (e.pageX - $(target).offset().left);
+				var y = (e.pageY - $(target).offset().top);
+
+				if (x < 0) x = 0;
+				if (y < 0) y = 0;
+				if (x > 255) x = 255;
+				if (y > 255) y = 255;
+				$(target).parent().find(".colorpicker").css({
+					"left": x + "px",
+					"top": y + "px"
+				});
+
+				getColor(target, true);
 			}
-			else
-			{ 
-				$(this).parent().parent().css("height", "28px"); 
-			}
-			var v = $(this).attr("data-hide") == "true" ? "false" : "true";
-			$(".coloreditor").attr("data-hide", "true");
-			$(this).attr("data-hide", v);
-			return false;
-		});
 
-		$(this).css("height", "28px");
+			if (sliderdown) {
+				var y = (e.pageY - $(target).offset().top);
+				if (y < 0) y = 0;
+				if (y > 255) y = 255;
 
-		$(this).find("input").change(function(e)
-		{
-			setRGB(e.target);
-			colorSet(this);
-		});
+				if (hue) {
+					$(target).parent().find(".hue>.pickslider").css("top", y + "px");
 
-		$(this).find("input").on("input", function(e)
-		{
-			setRGB(e.target);
-			colorSet(this);
-		});
+					getColor(target, true);
+				} else {
+					$(target).parent().find(".transparent>.pickslider").css("top", y + "px");
 
-		$(this).find("input").on("mousewheel", function(e)
-		{
-			$(this).val(parseInt($(this).val()) + Math.round(e.originalEvent.wheelDelta / 60));
-
-			if(parseInt($(this).attr("min")) > $(this).val())
-				$(this).val($(this).attr("min"));
-			else if(parseInt($(this).attr("max")) < $(this).val())
-				$(this).val($(this).attr("max"));
-				
-			setRGB(e.target);
-			colorSet(this);
-			return false;
-		});
-
-		$(window).mousemove(function(e)
-		{
-			try
-			{
-				if(mousedown)
-				{
-					var x = (e.pageX - $(target).offset().left);
-					var y = (e.pageY - $(target).offset().top);
-		
-					if(x < 0) x = 0;
-					if(y < 0) y = 0;
-					if(x > 255) x = 255;
-					if(y > 255) y = 255;
-					$(target).parent().find(".colorpicker").css({"left":x+"px", "top":y+"px"});
-	
 					getColor(target, true);
 				}
-				
-				if(sliderdown)
-				{
-					var y = (e.pageY - $(target).offset().top);
-					if(y < 0) y = 0;
-					if(y > 255) y = 255;
-	
-					if(hue)
-					{
-						$(target).parent().find(".hue>.pickslider").css("top", y+"px");
-						
-						getColor(target, true);
-					}
-					else
-					{
-						$(target).parent().find(".transparent>.pickslider").css("top", y+"px");
-	
-						getColor(target, true);
-					}
-				}
 			}
-			catch(ex)
-			{}
-		}).mousedown(function(e)
-		{
-			if(e.target.className == "pickarea")
-			{
-				mousedown = true;
-				target = e.target;
+		} catch (ex) {}
+	}).mousedown(function(e) {
+		if (e.target.className == "pickarea") {
+			mousedown = true;
+			target = e.target;
+		}
+
+		if (e.target.className == "huearea" || e.target.className == "transparentarea") {
+			target = e.target;
+			sliderdown = true;
+
+			if (e.target.className == "transparentarea") {
+				hue = false;
+			} else if (e.target.className == "huearea") {
+				hue = true;
 			}
-			
-			if(e.target.className == "huearea" || e.target.className == "transparentarea")
-			{
-				target = e.target;
-				sliderdown = true;
-				
-				if(e.target.className == "transparentarea")
-				{
-					hue = false;
-				}
-				else if(e.target.className == "huearea")
-				{
-					hue = true;
-				}
-			}
-			else
-			{
-				
-			}
-		}).mouseup(function(e)
-		{
-			try
-			{
-				mousedown = false;	
-				sliderdown = false;
-			}
-			catch(ex) {}
-		});
+		} else {
+
+		}
+	}).mouseup(function(e) {
+		try {
+			mousedown = false;
+			sliderdown = false;
+		} catch (ex) {}
 	});
+});
 
-	function getstrtorgb(str)
-	{
-		var rgb = /rgb\(([0-9\s]*?),([0-9\s]*?),([0-9\s]*?)\)/;
-		var rgba = /rgba\(([0-9\s]*?),([0-9\s]*?),([0-9\s]*?),([0-9.\s]*?)\)/;
-		var hex = /#([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})/;
+function getstrtorgb(str) {
+	var rgb = /rgb\(([0-9\s]*?),([0-9\s]*?),([0-9\s]*?)\)/;
+	var rgba = /rgba\(([0-9\s]*?),([0-9\s]*?),([0-9\s]*?),([0-9.\s]*?)\)/;
+	var hex = /#([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})/;
 
-		var r,g,b,a;
-		a = 1;
+	var r, g, b, a;
+	a = 1;
 
-		if(hex.test(str))
-		{
-			r = parseInt(str.match(hex)[1], 16);
-			g = parseInt(str.match(hex)[2], 16);
-			b = parseInt(str.match(hex)[3], 16);
-		}
-		else if(rgba.test(str))
-		{
-			r = parseInt(str.match(rgba)[1]);
-			g = parseInt(str.match(rgba)[2]);
-			b = parseInt(str.match(rgba)[3]);
-			a = parseFloat(str.match(rgba)[4]);
-		}
-		else if(rgb.test(str))
-		{
-			r = parseInt(str.match(rgb)[1]);
-			g = parseInt(str.match(rgb)[2]);
-			b = parseInt(str.match(rgb)[3]);
-		}
-
-		return {"r":r, "g":g, "b":b, "a":a};
+	if (hex.test(str)) {
+		r = parseInt(str.match(hex)[1], 16);
+		g = parseInt(str.match(hex)[2], 16);
+		b = parseInt(str.match(hex)[3], 16);
+	} else if (rgba.test(str)) {
+		r = parseInt(str.match(rgba)[1]);
+		g = parseInt(str.match(rgba)[2]);
+		b = parseInt(str.match(rgba)[3]);
+		a = parseFloat(str.match(rgba)[4]);
+	} else if (rgb.test(str)) {
+		r = parseInt(str.match(rgb)[1]);
+		g = parseInt(str.match(rgb)[2]);
+		b = parseInt(str.match(rgb)[3]);
 	}
 
-	$("input[type=range]").change(function()
-	{
-		$(this).parent().find(".view").text($(this).val());
-		option[$(this).parent().attr("data-id")] = $(this).val();
+	return {
+		"r": r,
+		"g": g,
+		"b": b,
+		"a": a
+	};
+}
+
+$("input[type=range]").change(function() {
+	$(this).parent().find(".view").text($(this).val());
+	option[$(this).parent().attr("data-id")] = $(this).val();
+	saveSetting();
+	return false;
+});
+
+$("input[type=range]").on("input", function() {
+	$(this).parent().find(".view").text($(this).val());
+	option[$(this).parent().attr("data-id")] = $(this).val();
+	saveSetting();
+	return false;
+});
+
+$(".switch").click(function() {
+	if ($(this).attr("data-checked") != "true") {
+		$(this).attr("data-checked", "true");
+	} else {
+		$(this).attr("data-checked", "false");
+	}
+
+	if ($(this).parent().attr("data-id") != undefined) {
+		option[$(this).parent().attr("data-id")] = ($(this).attr("data-checked") == "true" ? true : false);
 		saveSetting();
-		return false;
-	});
+	}
+});
 
-	$("input[type=range]").on("input", function()
-	{
-		$(this).parent().find(".view").text($(this).val());
-		option[$(this).parent().attr("data-id")] = $(this).val();
-		saveSetting();
-		return false;
-	});
-
-	$(".switch").click(function()
-	{
-		if($(this).attr("data-checked") != "true")
-		{
-			$(this).attr("data-checked", "true");
-		}
-		else
-		{
-			$(this).attr("data-checked", "false");
+$(".item").click(function(e) {
+	if (e.target.className == "item" && $(this).find(".switch").length > 0) {
+		var $switch = $(this).find(".switch");
+		if ($switch.attr("data-checked") != "true") {
+			$switch.attr("data-checked", "true");
+		} else {
+			$switch.attr("data-checked", "false");
 		}
 
-		if($(this).parent().attr("data-id") != undefined)
-		{
-			option[$(this).parent().attr("data-id")] = ($(this).attr("data-checked")=="true"?true:false);
+		if ($(this).attr("data-id") != undefined) {
+			option[$(this).attr("data-id")] = ($switch.attr("data-checked") == "true" ? true : false);
 			saveSetting();
 		}
+	}
+});
+
+$(".imageurlpicker").each(function() {
+	$(this).html('<div class="inputarea"><input type="text" value="" placeholder="Image URL"/><div class="chk"><i class="material-icons">launch</i></div><div class="deleteimg"><i class="material-icons">delete</i></div></div><div class="imagearea"><div class="image"></div></div><div class="remotectrl"><textarea placeholder="EX) blur(2px) contrast(1.25) ... etc"></textarea><div class="label" data-label="cssfilter"></div><div class="options imagealign" data-id="imgalign" label=""></div><dov class="options sizeoption" data-id="imgsizeopt"><button data-checked="true" data-label="widthfit"></button><button data-checked="false" data-label="heightfit"></button><button data-checked="false" data-label="original"></button></div></div>');
+	var This = this;
+
+	$(this).find(".imagealign").append("<button data-checked=\"false\">↖</button>");
+	$(this).find(".imagealign").append("<button data-checked=\"false\">↑</button>");
+	$(this).find(".imagealign").append("<button data-checked=\"false\">↗</button>");
+
+	$(this).find(".imagealign").append("<button data-checked=\"false\">←</button>");
+	$(this).find(".imagealign").append("<button data-checked=\"true\">×</button>");
+	$(this).find(".imagealign").append("<button data-checked=\"false\">→</button>");
+
+	$(this).find(".imagealign").append("<button data-checked=\"false\">↙</button>");
+	$(this).find(".imagealign").append("<button data-checked=\"false\">↓</button>");
+	$(this).find(".imagealign").append("<button data-checked=\"false\">↘</button>");
+
+	$(this).find(".imagealign>button").click(function() {
+		$(This).find(".imagealign>button").attr("data-checked", "false");
+		$(this).attr("data-checked", "true");
+
+		$(This).find(".chk").trigger("click");
 	});
 
-	$(".item").click(function(e)
-	{
-		if(e.target.className == "item" && $(this).find(".switch").length > 0)
-		{
-			var $switch = $(this).find(".switch");
-			if($switch.attr("data-checked") != "true")
-			{
-				$switch.attr("data-checked", "true");
-			}
-			else
-			{
-				$switch.attr("data-checked", "false");
-			}
+	$(this).find(".sizeoption>button").click(function() {
+		$(This).find(".sizeoption>button").attr("data-checked", "false");
+		$(this).attr("data-checked", "true");
 
-			if($(this).attr("data-id") != undefined)
-			{
-				option[$(this).attr("data-id")] = ($switch.attr("data-checked")=="true"?true:false);
-				saveSetting();
-			}
+		$(This).find(".chk").trigger("click");
+	});
+
+	$(this).find(".deleteimg").click(function() {
+		$(This).find(".image").removeAttr("style");
+	});
+
+	$(this).find("[data-label]").each(function() {
+		$(this).html(curLang.label[$(this).attr("data-label")]);
+	});
+
+	$(this).find("[data-id]").each(function() {
+		if (curLang.settings[$(this).attr("data-id")] != undefined)
+			$(this).attr("label", curLang.settings[$(this).attr("data-id")]);
+	});
+
+	$(this).find(".chk").click(function() {
+		if ($(This).find("input").val().trim() == "") return;
+		$(This).find(".image").css({
+			"background-image": "url(" + $(This).find("input").val() + ")",
+			"background-repeat": "no-repeat",
+			"filter": $(This).find("textarea").val().trim(),
+			"webkitFilter": $(This).find("textarea").val().trim()
+		});
+
+		switch ($(This).find(".sizeoption>[data-checked=true]").attr("data-label")) {
+			case "widthfit":
+				$(This).find(".image").css("background-size", "100% auto");
+				break;
+			case "heightfit":
+				$(This).find(".image").css("background-size", "auto 100%");
+				break;
+			case "original":
+				$(This).find(".image").css("background-size", "auto auto");
+				break;
+		}
+
+		switch ($(This).find(".imagealign>[data-checked=true]").html()) {
+			case "↖":
+				$(This).find(".image").css("background-position", "left top");
+				break;
+			case "↑":
+				$(This).find(".image").css("background-position", "center top");
+				break;
+			case "↗":
+				$(This).find(".image").css("background-position", "right top");
+				break;
+			case "←":
+				$(This).find(".image").css("background-position", "left center");
+				break;
+			case "×":
+				$(This).find(".image").css("background-position", "center center");
+				break;
+			case "→":
+				$(This).find(".image").css("background-position", "right center");
+				break;
+			case "↙":
+				$(This).find(".image").css("background-position", "left bottom");
+				break;
+			case "↓":
+				$(This).find(".image").css("background-position", "center bottom");
+				break;
+			case "↘":
+				$(This).find(".image").css("background-position", "right bottom");
+				break;
 		}
 	});
+});
 
-	$(".imageurlpicker").each(function()
-	{
-		$(this).html('<div class="inputarea"><input type="text" value="" placeholder="Image URL"/><div class="chk"><i class="material-icons">launch</i></div><div class="deleteimg"><i class="material-icons">delete</i></div></div><div class="imagearea"><div class="image"></div></div><div class="remotectrl"><textarea placeholder="EX) blur(2px) contrast(1.25) ... etc"></textarea><div class="label" data-label="cssfilter"></div><div class="options imagealign" data-id="imgalign" label=""></div><dov class="options sizeoption" data-id="imgsizeopt"><button data-checked="true" data-label="widthfit"></button><button data-checked="false" data-label="heightfit"></button><button data-checked="false" data-label="original"></button></div></div>');
-		var This = this;
+for (var i in option) {
+	if (i == "backgroundimg") {
+		$(".imageurlpicker>.imagearea>.image").attr("style", option[i]);
+		$(".imageurlpicker .sizeoption>button").attr("data-checked", "false");
 
-		$(this).find(".imagealign").append("<button data-checked=\"false\">↖</button>");
-		$(this).find(".imagealign").append("<button data-checked=\"false\">↑</button>");
-		$(this).find(".imagealign").append("<button data-checked=\"false\">↗</button>");
+		$(".imageurlpicker textarea").val($(".imageurlpicker>.imagearea>.image").css("filter"));
+		if ($(".imageurlpicker textarea").val() == "none")
+			$(".imageurlpicker textarea").val($(".imageurlpicker>.imagearea>.image").css("webkitFilter"));
+		if ($(".imageurlpicker textarea").val() == "none")
+			$(".imageurlpicker textarea").val("");
 
-		$(this).find(".imagealign").append("<button data-checked=\"false\">←</button>");
-		$(this).find(".imagealign").append("<button data-checked=\"true\">×</button>");
-		$(this).find(".imagealign").append("<button data-checked=\"false\">→</button>");
-
-		$(this).find(".imagealign").append("<button data-checked=\"false\">↙</button>");
-		$(this).find(".imagealign").append("<button data-checked=\"false\">↓</button>");
-		$(this).find(".imagealign").append("<button data-checked=\"false\">↘</button>");
-
-		$(this).find(".imagealign>button").click(function()
+		$(".imageurlpicker input").val($(".imageurlpicker>.imagearea>.image").css("background-image"));
+		$(".imageurlpicker input").val($(".imageurlpicker input").val().replace(/url\((.+)\)/, "$1").replace(/"/, ""));
+		if($(".imageurlpicker input").val() == "none")
 		{
-			$(This).find(".imagealign>button").attr("data-checked", "false");
-			$(this).attr("data-checked", "true");
-
-			$(This).find(".chk").trigger("click");
-		});
-
-		$(this).find(".sizeoption>button").click(function()
-		{
-			$(This).find(".sizeoption>button").attr("data-checked", "false");
-			$(this).attr("data-checked", "true");
-
-			$(This).find(".chk").trigger("click");
-		});
-
-		$(this).find(".deleteimg").click(function()
-		{
-			$(This).find(".image").removeAttr("style");
-		});
-
-		$(this).find("[data-label]").each(function()
-		{
-			$(this).html(curLang.label[$(this).attr("data-label")]);
-		});
-
-		$(this).find("[data-id]").each(function()
-		{
-			if(curLang.settings[$(this).attr("data-id")] != undefined)
-				$(this).attr("label", curLang.settings[$(this).attr("data-id")]);
-		});
-
-		$(this).find(".chk").click(function()
-		{
-			if($(This).find("input").val().trim() == "") return;
-			$(This).find(".image").css({"background-image":"url(" + $(This).find("input").val() + ")",
-			"background-repeat":"no-repeat", "filter":$(This).find("textarea").val().trim(), "webkitFilter":$(This).find("textarea").val().trim()});
-
-			switch($(This).find(".sizeoption>[data-checked=true]").attr("data-label"))
-			{
-				case "widthfit":
-					$(This).find(".image").css("background-size", "100% auto");
-					break;
-				case "heightfit":
-					$(This).find(".image").css("background-size", "auto 100%");
-					break;
-				case "original":
-					$(This).find(".image").css("background-size", "auto auto");
-					break;
-			}
-
-			switch($(This).find(".imagealign>[data-checked=true]").html())
-			{
-				case "↖":
-					$(This).find(".image").css("background-position", "left top");
-				break;
-				case "↑":
-					$(This).find(".image").css("background-position", "center top");
-				break;
-				case "↗":
-					$(This).find(".image").css("background-position", "right top");
-				break;
-				case "←":
-					$(This).find(".image").css("background-position", "left center");
-				break;
-				case "×":
-					$(This).find(".image").css("background-position", "center center");
-				break;
-				case "→":
-					$(This).find(".image").css("background-position", "right center");
-				break;
-				case "↙":
-					$(This).find(".image").css("background-position", "left bottom");
-				break;
-				case "↓":
-					$(This).find(".image").css("background-position", "center bottom");
-				break;
-				case "↘":
-					$(This).find(".image").css("background-position", "right bottom");
-				break;
-			}
-		});
-	});
-
-	for(var i in option)
-	{
-		if(i == "backgroundimg")
-		{
-			$(".imageurlpicker>.imagearea>.image").attr("style", option[i]);
-			$(".imageurlpicker .sizeoption>button").attr("data-checked", "false");
-
-			$(".imageurlpicker textarea").val($(".imageurlpicker>.imagearea>.image").css("filter"));
-			if($(".imageurlpicker textarea").val() == "none")
-				$(".imageurlpicker textarea").val($(".imageurlpicker>.imagearea>.image").css("webkitFilter"));
-
-			$(".imageurlpicker input").val($(".imageurlpicker>.imagearea>.image").css("background-image"));
-			$(".imageurlpicker input").val($(".imageurlpicker input").val().replace(/url\((.+)\)/, "$1").replace(/"/, ""));
-
-			switch($(".imageurlpicker>.imagearea>.image").css("background-size"))
-			{
-				case "100%":
-					$(".imageurlpicker .sizeoption>[data-label=widthfit]").attr("data-checked", "true");
-				break;
-				case "auto 100%":
-					$(".imageurlpicker .sizeoption>[data-label=heightfit]").attr("data-checked", "true");
-				break;
-				case "auto":
-					$(".imageurlpicker .sizeoption>[data-label=original]").attr("data-checked", "true");
-				break;
-			}
-
-			$(".imageurlpicker .imagealign>button").attr("data-checked", "false");
-
-			switch($(".imageurlpicker>.imagearea>.image").css("background-position"))
-			{
-				case "0% 0%":  $($(".imageurlpicker .imagealign>button")[0]).attr("data-checked", "true"); break;
-				case "0% 50%":  $($(".imageurlpicker .imagealign>button")[1]).attr("data-checked", "true"); break;
-				case "0% 100%":  $($(".imageurlpicker .imagealign>button")[2]).attr("data-checked", "true"); break;
-				case "50% 0%":  $($(".imageurlpicker .imagealign>button")[3]).attr("data-checked", "true"); break;
-				case "50% 50%":  $($(".imageurlpicker .imagealign>button")[4]).attr("data-checked", "true"); break;
-				case "50% 100%":  $($(".imageurlpicker .imagealign>button")[5]).attr("data-checked", "true"); break;
-				case "100% 0%":  $($(".imageurlpicker .imagealign>button")[6]).attr("data-checked", "true"); break;
-				case "100% 50%":  $($(".imageurlpicker .imagealign>button")[7]).attr("data-checked", "true"); break;
-				case "100% 100%":  $($(".imageurlpicker .imagealign>button")[8]).attr("data-checked", "true"); break;
-			}
+			$(".imageurlpicker input").val("");
 		}
-		else if($("[data-id=" + i + "]").length != 0)
-		{
-			if(typeof(option[i]) === "boolean")
-				$("[data-id=" + i + "]").find(".switch").attr("data-checked", option[i]);
-			else if($("[data-id=" + i + "]").find("select").length > 0)
-			{
-				$("[data-id=" + i + "]").find("select").val(option[i]);
-			}
-			else
-			{
-				var $item = $("[data-id=" + i + "]");
 
-				if($item.find(".colorpicker").length > 0)
-				{
-					var rgba = getstrtorgb(option[i]);
-					colorSet($item, rgba);
-				}
-				else
-				{
-					$item.find("input").val(option[i]);
-					$item.find(".view").text(option[i]);
-				}
+		switch ($(".imageurlpicker>.imagearea>.image").css("background-size")) {
+			case "100%":
+				$(".imageurlpicker .sizeoption>[data-label=widthfit]").attr("data-checked", "true");
+				break;
+			case "auto 100%":
+				$(".imageurlpicker .sizeoption>[data-label=heightfit]").attr("data-checked", "true");
+				break;
+			case "auto":
+				$(".imageurlpicker .sizeoption>[data-label=original]").attr("data-checked", "true");
+				break;
+		}
+
+		$(".imageurlpicker .imagealign>button").attr("data-checked", "false");
+
+		switch ($(".imageurlpicker>.imagearea>.image").css("background-position")) {
+			case "0% 0%":
+				$($(".imageurlpicker .imagealign>button")[0]).attr("data-checked", "true");
+				break;
+			case "0% 50%":
+				$($(".imageurlpicker .imagealign>button")[1]).attr("data-checked", "true");
+				break;
+			case "0% 100%":
+				$($(".imageurlpicker .imagealign>button")[2]).attr("data-checked", "true");
+				break;
+			case "50% 0%":
+				$($(".imageurlpicker .imagealign>button")[3]).attr("data-checked", "true");
+				break;
+			case "50% 50%":
+				$($(".imageurlpicker .imagealign>button")[4]).attr("data-checked", "true");
+				break;
+			case "50% 100%":
+				$($(".imageurlpicker .imagealign>button")[5]).attr("data-checked", "true");
+				break;
+			case "100% 0%":
+				$($(".imageurlpicker .imagealign>button")[6]).attr("data-checked", "true");
+				break;
+			case "100% 50%":
+				$($(".imageurlpicker .imagealign>button")[7]).attr("data-checked", "true");
+				break;
+			case "100% 100%":
+				$($(".imageurlpicker .imagealign>button")[8]).attr("data-checked", "true");
+				break;
+		}
+	} else if ($("[data-id=" + i + "]").length != 0) {
+		if (typeof(option[i]) === "boolean")
+			$("[data-id=" + i + "]").find(".switch").attr("data-checked", option[i]);
+		else if ($("[data-id=" + i + "]").find("select").length > 0) {
+			$("[data-id=" + i + "]").find("select").val(option[i]);
+		} else {
+			var $item = $("[data-id=" + i + "]");
+
+			if ($item.find(".colorpicker").length > 0) {
+				var rgba = getstrtorgb(option[i]);
+				colorSet($item, rgba);
+			} else {
+				$item.find("input").val(option[i]);
+				$item.find(".view").text(option[i]);
 			}
 		}
 	}
-	$('#tmp').html('* {font-family:"' + option.fonts + '"}');
+}
+$('#tmp').html('* {font-family:"' + option.fonts + '"}');
 
-	$("input, select").change(function()
+$("input, select").change(function() {
+	$(".savebtn").addClass("alarm");
+});
+$("#settingtxt").val(JSON.stringify(option, null, 4));
+
+function allowset()
+{
+	if($("#settingtxt_import").val().trim() != "")
 	{
-		$(".savebtn").addClass("alarm");
-	});
-
+		option = JSON.parse($("#settingtxt_import").val());
+		window.opener.option = option;
+		window.opener.setCSS();
+		saveSetting();
+		location.href = location.href;
+	}
+}
 </script>

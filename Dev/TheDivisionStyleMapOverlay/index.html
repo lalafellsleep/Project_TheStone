@@ -1,50 +1,50 @@
-<style>html{background:#000;}</style>
+<style>
+html{background:#000;}
+
+.round_o, .round_o2 {width:108px; height:108px; overflow:hidden; transform-origin:right bottom; position:absolute; margin-left:-8px; margin-top:-8px;}
+.round_in_o, .round_in_o2 {width:108px; height:108px; overflow:hidden; transform:rotate(16deg); transform-origin:right bottom;}
+.round_in_o::after, .round_in_o2::after {width:216px; height:216px; border-radius:50%; box-sizing:border-box; border:5px solid rgba(255,96,96,.75); content:" "; position:absolute;}
+.round_in_o2 {transform:rotate(51deg);}
+
+.round_b {width:100px; height:100px; overflow:hidden; transform-origin:right bottom; position:absolute;}
+.round_in_b {width:100px; height:100px; overflow:hidden; transform:rotate(50deg); transform-origin:right bottom;}
+.round_in_b::after {width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,255,255,.25); content:" "; position:absolute;}
+
+.round_c {width:100px; height:100px; overflow:hidden; transform-origin:right bottom; position:absolute;}
+.round_in_c {width:100px; height:100px; overflow:hidden; transform:rotate(51deg); transform-origin:right bottom;}
+.round_in_c::after {width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,255,255,.25); content:" "; position:absolute;}
+
+.round_near_a {width:100px; height:100px; overflow:hidden; transform-origin:right bottom; position:absolute;}
+.round_near_in_a {width:100px; height:100px; overflow:hidden; transform:rotate(16deg); transform-origin:right bottom;}
+.round_near_in_a::after {width:148px; height:148px; margin:25px; border-radius:50%; box-sizing:border-box; border:53px solid rgba(255,255,255,.15); content:" "; position:absolute;}
+
+.round_near_b {width:100px; height:100px; overflow:hidden; transform-origin:right bottom; position:absolute;}
+.round_near_in_b {width:100px; height:100px; overflow:hidden; transform:rotate(51deg); transform-origin:right bottom;}
+.round_near_in_b::after {width:148px; height:148px; margin:25px; border-radius:50%; box-sizing:border-box; border:53px solid rgba(255,255,255,.15); content:" "; position:absolute;}
+
+.round_near_c {width:100px; height:100px; overflow:hidden; transform-origin:right bottom; position:absolute;}
+.round_near_in_c {width:100px; height:100px; overflow:hidden; transform:rotate(50deg); transform-origin:right bottom;}
+.round_near_in_c::after {width:148px; height:148px; margin:25px; border-radius:50%; box-sizing:border-box; border:53px solid rgba(255,96,96,.75); content:" "; position:absolute;}
+</style>
 <div style="transform:scale(1.05); border:1px solid rgba(255,255,255,.5); width:200px; height:200px; border-radius:50%; position:absolute; margin-left:93px; margin-top:34px;">
     <div style="width:100px; height:100px; overflow:hidden; transform-origin:right bottom; transform:rotate(37deg); position:absolute;">
         <div style="width:100px; height:100px; overflow:hidden; transform:rotate(16deg); transform-origin:right bottom;">
-            <div style="width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,96,96, .5);"></div>
+            <div style="width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,96,96, .75);"></div>
         </div>
     </div>
-    <div style="width:100px; height:100px; overflow:hidden; transform-origin:right bottom; transform:rotate(37deg); position:absolute;">
-        <div style="width:100px; height:100px; overflow:hidden; transform:rotate(16deg); transform-origin:right bottom;">
-            <div style="width:148px; height:148px; margin:25px; border-radius:50%; box-sizing:border-box; border:53px solid rgba(255,255,255,.15);"></div>
-        </div>
-    </div>
-    <div style="width:100px; height:100px; overflow:hidden; transform-origin:right bottom; transform:rotate(77deg); position:absolute;">
-        <div style="width:100px; height:100px; overflow:hidden; transform:rotate(51deg); transform-origin:right bottom;">
-            <div style="width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,255,255,.25);"></div>
-        </div>
-    </div>
-    <div style="width:100px; height:100px; overflow:hidden; transform-origin:right bottom; transform:rotate(118deg); position:absolute;">
-        <div style="width:100px; height:100px; overflow:hidden; transform:rotate(50deg); transform-origin:right bottom;">
-            <div style="width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,255,255,.25);"></div>
-        </div>
-    </div>
-    <div style="width:100px; height:100px; overflow:hidden; transform-origin:right bottom; transform:rotate(159deg); position:absolute;">
-        <div style="width:100px; height:100px; overflow:hidden; transform:rotate(50deg); transform-origin:right bottom;">
-            <div style="width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,255,255,.25);"></div>
-        </div>
-    </div>
-    <div style="width:100px; height:100px; overflow:hidden; transform-origin:right bottom; transform:rotate(200deg); position:absolute;">
-        <div style="width:100px; height:100px; overflow:hidden; transform:rotate(50deg); transform-origin:right bottom;">
-            <div style="width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,255,255,.25);"></div>
-        </div>
-    </div>
-    <div style="width:100px; height:100px; overflow:hidden; transform-origin:right bottom; transform:rotate(241deg); position:absolute;">
-        <div style="width:100px; height:100px; overflow:hidden; transform:rotate(50deg); transform-origin:right bottom;">
-            <div style="width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,255,255,.25);"></div>
-        </div>
-    </div>
-    <div style="width:100px; height:100px; overflow:hidden; transform-origin:right bottom; transform:rotate(282deg); position:absolute;">
-        <div style="width:100px; height:100px; overflow:hidden; transform:rotate(50deg); transform-origin:right bottom;">
-            <div style="width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,255,255,.25);"></div>
-        </div>
-    </div>
-    <div style="width:100px; height:100px; overflow:hidden; transform-origin:right bottom; transform:rotate(322deg); position:absolute;">
-        <div style="width:100px; height:100px; overflow:hidden; transform:rotate(51deg); transform-origin:right bottom;">
-            <div style="width:200px; height:200px; border-radius:50%; box-sizing:border-box; border:24px solid rgba(255,255,255,.25);"></div>
-        </div>
-    </div>
+    <div class="round_near_a" style="transform:rotate(37deg);"><div class="round_near_in_a"></div></div>
+    <div class="round_o" style="transform:rotate( 37deg);"><div class="round_in_o"></div></div>
+    <div class="round_o2" style="transform:rotate(77deg);"><div class="round_in_o2"></div></div>
+
+    <div class="round_near_c" style="transform:rotate(-78deg);"><div class="round_near_in_c"></div></div>
+
+    <div class="round_c" style="transform:rotate( 77deg);"><div class="round_in_c"></div></div>
+    <div class="round_c" style="transform:rotate(-38deg);"><div class="round_in_c"></div></div>
+    <div class="round_b" style="transform:rotate(118deg);"><div class="round_in_b"></div></div>
+    <div class="round_b" style="transform:rotate(159deg);"><div class="round_in_b"></div></div>
+    <div class="round_b" style="transform:rotate(200deg);"><div class="round_in_b"></div></div>
+    <div class="round_b" style="transform:rotate(241deg);"><div class="round_in_b"></div></div>
+    <div class="round_b" style="transform:rotate(282deg);"><div class="round_in_b"></div></div>
     <div style="position:absolute; margin:80px; width:40px; height:40px; background:rgba(255,255,255,.3); border-radius:50%;">
         <div style="position:absolute; margin:15px; width:10px; height:10px; background:#FF9221; border-radius:50%;"></div>
     </div>

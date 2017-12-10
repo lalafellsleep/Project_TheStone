@@ -189,26 +189,15 @@
 		
 		function opensetting()
 		{
-			
 			if(w != undefined)
 			{
 				if(!w.closed)
 					return;
 			}
-
-			var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
-			var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
-
-			var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-			var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
-
-			var left = ((width / 2) - (720 / 2)) + dualScreenLeft;
-			var top = ((height / 2) - (480 / 2)) + dualScreenTop;
-
 			if(!onACTWebSocket)
-				w = window.open("./popup.html", "settingwindow", "menubar=0,resizable=0,width=740,height=580");
+				w = window.open("./popup.html", "settingwindow", "menubar=0,resizable=0,width=980,height=620");
 			else 
-				w = window.open("./popup.html", "settingwindow" + (Math.random() * 1000).toFixed(), "menubar=0,resizable=0,width=740,height=580");
+				w = window.open("./popup.html", "settingwindow" + (Math.random() * 1000).toFixed(), "menubar=0,resizable=0,width=980,height=560");
 		}
 		
 		function classExists(p, c)
@@ -244,6 +233,14 @@
 				"hpsarea":[lastCombatHPS, columnarrayhps]
 			};
 
+			if(option.displayeddps != undefined && option.displayedhps != undefined) 
+			{
+				dpshps = {
+					"dpsarea":[lastCombat, option.displayeddps],
+					"hpsarea":[lastCombatHPS, option.displayedhps]
+				};
+			}
+
 			$(".dpsheader").html("");
 			$(".hpsheader").html("");
 
@@ -274,20 +271,32 @@
 
 				for(var i in arr)
 				{
-					var colname = arr[i].replace(/%/ig, '_');
-					var coltext = arr[i];
+					if(typeof arr[i] === "object")
+					{
+						if(!arr[i].view) continue;
+						var colname = arr[i].name.replace(/%/ig, '_');
+						var coltext = arr[i].name;
+						var origintxt = arr[i].name;
+						var width = arr[i].width;
+					} 
+					else
+					{
+						var colname = arr[i].replace(/%/ig, '_');
+						var origintxt = arr[i];
+						var coltext = arr[i];
+						var width = 50;
 
-					if(replaceColName[arr[i]] !== undefined)
-						coltext = replaceColName[arr[i]];
+						if(smallColumns.indexOf(arr[i]) > -1) width = 50;
+						if(largeColumns.indexOf(arr[i]) > -1) width = 140;
+					}
 
-					$(header).append("<span class='" + colname + "' data-sort='" + arr[i] + "'>" + coltext + "</span>");
-					if(smallColumns.indexOf(arr[i]) > -1)
-						$(header + ">." + colname).width(50);
+					if(replaceColName[origintxt] !== undefined)
+						coltext = replaceColName[origintxt];
 
-					if(largeColumns.indexOf(arr[i]) > -1)
-						$(header + ">." + colname).width(140);
+					$(header).append("<span class='" + colname + "' data-sort='" + origintxt + "'>" + coltext + "</span>");
+					$(header + ">." + colname).width(width);
 						
-					if(combat.sortkey == getsortKey(arr[i]))
+					if(combat.sortkey == getsortKey(origintxt))
 						$(header + ">." + colname).addClass("hilight");
 				}
 
@@ -318,6 +327,14 @@
 				"dpsarea":[lastCombat, columnarray],
 				"hpsarea":[lastCombatHPS, columnarrayhps]
 			};
+
+			if(option.displayeddps != undefined && option.displayedhps != undefined) 
+			{
+				dpshps = {
+					"dpsarea":[lastCombat, option.displayeddps],
+					"hpsarea":[lastCombatHPS, option.displayedhps]
+				};
+			}
 
 			if(!option.displayhps)
 			{
@@ -586,13 +603,28 @@
 	
 							for(var ix in e[1])
 							{
-								var colname = e[1][ix].replace(/%/ig, '_');
-								var v = c.get(e[1][ix]);
+								if(typeof e[1][ix] === "object")
+								{
+									if(!e[1][ix].view) continue;
+
+									var colname = e[1][ix].name.replace(/%/ig, '_');
+									var v = c.get(e[1][ix].name);
+									var width = e[1][ix].width;
+								}
+								else
+								{
+									var colname = e[1][ix].replace(/%/ig, '_');
+									var v = c.get(e[1][ix]);
+									var width = 50;
+
+									if(largeColumns.indexOf(colname) > -1) width = 140;
+									if(smallColumns.indexOf(colname) > -1) width = 50;
+								}
 
 								if($(".body").is(".raid"))
 									v = parseFloat(v).toFixed(0);
 	
-								if(e[1][ix].indexOf("%") > -1)
+								if(colname.indexOf("%") > -1)
 									v = parseFloat(v).toFixed(1) + "%";
 								else if (typeof v === "number")
 								{
@@ -604,20 +636,16 @@
 										v = (v+"").replace(/\.[0-9]+/, "");
 								}
 	
-								if(e[1][ix] == "maxhit")
+								if(colname == "maxhit")
 									v = c.get("maxhitstr").replace(/Midare Setsugekka/, "Midare…") + "-" + c.get("maxhitval");
-	
-								if(e[1][ix] == "maxheal")
+								else if(colname == "maxheal")
 									v = c.get("maxhealstr") + "-" + c.get("maxhealval");
 	
 								if(classExists(person, ".data>.columns>." + colname))
 									$(person + ">.data>.columns").append("<span class='" + colname + "' data-prev='0'>"+v+"</span>");
-	
-								if(colname == "maxhit" || colname == "maxheal")
-									$(person + ">.data>.columns>." + colname).width(140);
-								if(colname == "swings" || colname == "hits" || colname == "misses" || colname == "deaths")
-									$(person + ">.data>.columns>." + colname).width(50);
-	
+
+								$(person + ">.data>.columns>." + colname).width(width);
+
 								$(person + ">.data>.columns>." + colname).html(v);
 							}
 						}

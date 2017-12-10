@@ -1,0 +1,273 @@
+{
+    "displayhps": true,
+    "nickhide": true,
+    "rankanim": true,
+    "numbanim": true,
+    "hpsallview": true,
+    "opacity": 100,
+    "backgroundimg": "",
+    "fonts": "Noto Sans KR",
+    "fontsize": 12,
+    "displayeddps": [
+        {
+            "name": "encdps",
+            "view": true,
+            "width": 50
+        },
+        {
+            "name": "maxhit",
+            "view": false,
+            "width": 150
+        },
+        {
+            "name": "damage",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "crithit%",
+            "view": true,
+            "width": 50
+        },
+        {
+            "name": "swings",
+            "view": true,
+            "width": 42
+        },
+        {
+            "name": "misses",
+            "view": false,
+            "width": 42
+        },
+        {
+            "name": "deaths",
+            "view": true,
+            "width": 42
+        },
+        {
+            "name": "BlockPct",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "crithits",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "CritDirectHit%",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "dps",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "damage%",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "damagetaken",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "DirectHit%",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "duration",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "kills",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "Last10DPS",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "Last30DPS",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "Last60DPS",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "Last180DPS",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "maxhitstr",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "maxhitval",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "ParryPct",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "tohit",
+            "view": false,
+            "width": 50
+        }
+    ],
+    "displayedhps": [
+        {
+            "name": "enchps",
+            "view": true,
+            "width": 50
+        },
+        {
+            "name": "healed",
+            "view": true,
+            "width": 50
+        },
+        {
+            "name": "effectiveHeal",
+            "view": true,
+            "width": 50
+        },
+        {
+            "name": "damageShield",
+            "view": true,
+            "width": 50
+        },
+        {
+            "name": "overHeal%",
+            "view": true,
+            "width": 50
+        },
+        {
+            "name": "cures",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "OverHealPct",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "absorbHeal",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "critheal%",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "critheals",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "healed%",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "heals",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "healstaken",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "hps",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "maxheal",
+            "view": false,
+            "width": 150
+        },
+        {
+            "name": "maxhealstr",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "maxhealval",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "overHeal",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "powerdrain",
+            "view": false,
+            "width": 50
+        },
+        {
+            "name": "powerheal",
+            "view": false,
+            "width": 50
+        }
+    ],
+    "bgcolor": "rgba(0,0,0,0.00)",
+    "iconglow": "rgba(171,120,19,1.00)",
+    "c_tanker": "rgba(0,0,160,1.00)",
+    "c_healer": "rgba(0,160,0,1.00)",
+    "c_dps": "rgba(160,0,0,1.00)",
+    "glapld": "rgba(136,204,204,1.00)",
+    "glapldf": "rgba(204,255,255,1.00)",
+    "mrdwar": "rgba(146,16,0,1.00)",
+    "mrdwarf": "rgba(255,204,170,1.00)",
+    "drk": "rgba(100,35,36,1.00)",
+    "drkf": "rgba(255,187,136,1.00)",
+    "cnjwhm": "rgba(207,176,144,1.00)",
+    "cnjwhmf": "rgba(255,238,170,1.00)",
+    "sch": "rgba(35,40,152,1.00)",
+    "schf": "rgba(238,255,238,1.00)",
+    "ast": "rgba(217,128,40,1.00)",
+    "astf": "rgba(255,255,153,1.00)",
+    "overhealcolor": "rgba(96,0,0,1.00)",
+    "pglmnk": "rgba(217,176,40,1.00)",
+    "pglmnkf": "rgba(255,238,153,1.00)",
+    "lncdrg": "rgba(73,104,225,1.00)",
+    "lncdrgf": "rgba(119,204,255,1.00)",
+    "rognin": "rgba(86,72,72,1.00)",
+    "rogninf": "rgba(255,102,153,1.00)",
+    "sam": "rgba(177,160,102,1.00)",
+    "samf": "rgba(254,254,254,1.00)",
+    "arcbrd": "rgba(180,209,67,1.00)",
+    "arcbrdf": "rgba(221,255,119,1.00)",
+    "mch": "rgba(56,176,180,1.00)",
+    "mchf": "rgba(187,255,204,1.00)",
+    "thmblm": "rgba(100,70,150,1.00)",
+    "thmblmf": "rgba(238,187,255,1.00)",
+    "acnsmn": "rgba(40,138,59,1.00)",
+    "acnsmnf": "rgba(221,255,119,1.00)",
+    "rdm": "rgba(229,121,168,1.00)",
+    "rdmf": "rgba(255,255,255,1.00)",
+    "lmb": "rgba(255,176,0,1.00)",
+    "lmbf": "rgba(255,255,255,1.00)"
+}

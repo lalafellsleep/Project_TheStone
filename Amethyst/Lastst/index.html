@@ -43,9 +43,10 @@
 				Project: The Stone<br>
 				<span style="font-size:14px;">Fancy Detail: Amethyst Edition</span>
 			</div>
-			<div class="donate" data-label="setting" onclick="opensetting();">Settings</div>
-			<div class="donate" data-excludelang="ko" data-excludelink="window.open('https://twip.kr/donate/nanaluka');" onclick="window.open('https://www.paypal.me/ffxivio/10');" data-label="donate">DONATE</div>
+			<div class="donate" data-label="setting" onclick="opensetting();">Set And Info</div>
 			<div class="donate" onclick="window.open('https://github.com/laiglinne-ff/FFXIV_Chamsucript');" data-label="issue">Leave ISSUE</div>
+			<div class="title">Square cushion cut patch</div>
+			<div lang="true" en="Color editor bug fixed" ko="컬러 에디터 버그가 수정되었습니다."></div>
 			<div class="title">1.1 Shield Cut Patch</div>
 			<div lang="true" en="Column editing and setting export/import Adding" ko="항목 설정과 설정 내보내기/들여오기가 추가되었습니다."></div>
 			<div class="title">1.0a hotfix</div>
@@ -126,19 +127,38 @@
 					css += ".body>div>." + job + ">.data {color:" + option[i + "f"] + ";}"
 				}
 
-				css += ".body {background:" + option.bgcolor + ";}";
-				css += ".body::after { content:' '; position:fixed; left:2px; right:2px; bottom:2px; top:40px; border-radius:3px; overflow:hidden; z-index:-1;" + option.backgroundimg + ";}";
+				if(option.bgcolor != undefined)
+					css += ".body {background:" + option.bgcolor + ";}";
+				if(option.backgroundimg != undefined)
+					css += ".body::after { content:' '; position:fixed; left:2px; right:2px; bottom:2px; top:40px; border-radius:3px; overflow:hidden; z-index:-1;" + option.backgroundimg + ";}";
 
-				css += ".DPS>.job {background-color:" + option.c_dps + " !important;}";
-				css += ".Tanker>.job {background-color:" + option.c_tanker + " !important;}";
-				css += ".Healer>.job {background-color:" + option.c_healer + " !important;}";
+				if(option.c_dps != undefined)
+					css += ".DPS>.job {background-color:" + option.c_dps + " !important;}";
+				if(option.c_tanker != undefined)
+					css += ".Tanker>.job {background-color:" + option.c_tanker + " !important;}";
+				if(option.c_healer != undefined)
+					css += ".Healer>.job {background-color:" + option.c_healer + " !important;}";
 
-				css += "*>.job::after {filter:drop-shadow(0px 0px 1px " + option.iconglow + ") drop-shadow(0px 0px 1px " + option.iconglow + "); -webkit-filter:drop-shadow(0px 0px 1px " + option.iconglow + ") drop-shadow(0px 0px 1px " + option.iconglow + ");}";
+				if(option.iconglow != undefined)
+					css += "*>.job::after {filter:drop-shadow(0px 0px 1px " + option.iconglow + ") drop-shadow(0px 0px 1px " + option.iconglow + "); -webkit-filter:drop-shadow(0px 0px 1px " + option.iconglow + ") drop-shadow(0px 0px 1px " + option.iconglow + ");}";
 
-				css += ".body>div>*>.barcover>.overhealbar {background:" + option.overhealcolor + ";}";
-				css += ".body>div>*>.barcover>.overhealbar * {border-color:" + option.overhealcolor + ";}";
-				css += "* {font-family:'" + option.fonts + "';}"
-				css += ".body>div>*>.data, .body>div>*>.data>.columns {font-size:" + option.fontsize +"px !important;}";
+				if(option.overhealcolor != undefined)
+					css += ".body>div>*>.barcover>.overhealbar {background:" + option.overhealcolor + ";}";
+
+				if(option.overhealcolor != undefined)
+					css += ".body>div>*>.barcover>.overhealbar * {border-color:" + option.overhealcolor + ";}";
+
+				if(option.fonts != undefined)
+					css += "* {font-family:'" + option.fonts + "';}"
+
+				if(option.fontsize != undefined)
+					css += ".body>div>*>.data, .body>div>*>.data>.columns {font-size:" + option.fontsize +"px !important;}";
+
+				if(option.topbgcolor != undefined)
+				{
+					css += ".header {background-color:" + option.topbgcolor + ";}";
+					css += ".dpsheader>.hilight, .hpsheader>.hilight {background-color:" + option.topbgcolor.replace(/(rgba\(.+,.+,.+),.+\)/, "$1, .75)") + ";}";
+				}
 
 				$("#customcss").html(css);
 			}
@@ -197,9 +217,9 @@
 					return;
 			}
 			if(!onACTWebSocket)
-				w = window.open("./popup.html", "settingwindow", "menubar=0,resizable=0,width=980,height=620");
+				w = window.open("./popup.html", "settingwindow", "menubar=0,resizable=0,width=760,height=620");
 			else 
-				w = window.open("./popup.html", "settingwindow" + (Math.random() * 1000).toFixed(), "menubar=0,resizable=0,width=980,height=560");
+				w = window.open("./popup.html", "settingwindow" + (Math.random() * 1000).toFixed(), "menubar=0,resizable=0,width=760,height=560");
 		}
 		
 		function classExists(p, c)
@@ -335,6 +355,13 @@
 				dpshps = {
 					"dpsarea":[lastCombat, option.displayeddps],
 					"hpsarea":[lastCombatHPS, option.displayedhps]
+				};
+			}
+			else
+			{
+				dpshps = {
+					"dpsarea":[lastCombat, columnarray],
+					"hpsarea":[lastCombatHPS, columnarrayhps]
 				};
 			}
 
@@ -611,12 +638,14 @@
 
 									var colname = e[1][ix].name.replace(/%/ig, '_');
 									var v = c.get(e[1][ix].name);
+									var orgcol = e[1][ix].name;
 									var width = e[1][ix].width;
 								}
 								else
 								{
 									var colname = e[1][ix].replace(/%/ig, '_');
 									var v = c.get(e[1][ix]);
+									var orgcol = e[1][ix];
 									var width = 50;
 
 									if(largeColumns.indexOf(colname) > -1) width = 140;
@@ -626,7 +655,7 @@
 								if($(".body").is(".raid"))
 									v = parseFloat(v).toFixed(0);
 	
-								if(colname.indexOf("%") > -1)
+								if(orgcol.indexOf("%") > -1)
 									v = parseFloat(v).toFixed(1) + "%";
 								else if (typeof v === "number")
 								{

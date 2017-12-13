@@ -121,7 +121,7 @@ body>.body>div>div>.shadowbar {left:37px; top:2px; right:8px;}
 
 .dpsheader, .hpsheader {height:20px; line-height:15px; text-align:right; padding-right:5px;  padding-left:80px; overflow:hidden;}
 .dpsheader>span,
-.hpsheader>span {height:15px; line-height:14px; display:inline-block; width:48px; font-size:11px; font-family:'맑은 고딕'; background:rgba(121,100,148,0.5);  border-radius:4px; text-align:center; margin-left:1px; color:#FFF; text-shadow:0px 0px 1px #FFF, 0px 0px 2px #000; padding-left:2px; padding-right:2px;}
+.hpsheader>span {height:15px; line-height:14px; display:inline-block; width:48px; font-size:11px; font-family:'맑은 고딕'; background:rgba(127,127,127,0.5);  border-radius:4px; text-align:center; margin-left:1px; color:#FFF; text-shadow:0px 0px 1px #FFF, 0px 0px 2px #000; padding-left:2px; padding-right:2px;}
 
 .dpsheader>.hilight, .hpsheader>.hilight {background:rgba(75, 0, 187, 0.75); box-shadow:inset 0px 0px 1px #FFF;}
 

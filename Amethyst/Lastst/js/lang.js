@@ -1,5 +1,12 @@
 var userLang = "en";
 userLang = navigator.language || navigator.userLanguage; 
+
+if(userLang == "ko" || userLang == "ko-KR" || userLang == "ko-Kr")
+{
+	userLang = "en"; // ah... ffxiv kr ha daijina koto wo hikeki dakara anataha mo sekutu dekinaindesu...
+	//
+}
+
 var languagePack = {
 	"ko":{
 		"lang":"한국어 (자동 감지)",
@@ -177,7 +184,9 @@ var languagePack = {
 			"fontsize":"General Font Size",
 			
 			"columnset":"Column Setting",
-			"setting-in-out":"Set Export/Import"
+			"setting-in-out":"Set Export/Import",
+			"overlayinfo":"Overlay Information",
+			"topbgcolor":"Header Color"
 		},
 		"html":{
 			"lang-setting":"Setting"
@@ -185,7 +194,7 @@ var languagePack = {
 		"label":{
 			"donate":"DONATE",
 			"issue":"OPEN ISSUE",
-			"setting":"SETTING",
+			"setting":"SET AND INFO",
 			"cssfilter":"CSS Filter",
 			"widthfit":"Width fit",
 			"heightfit":"Height fit",
@@ -198,12 +207,13 @@ var languagePack = {
 			"setexport":"Copy textbox content, you can save and share this.",
 			"setimport":"Or, if you have Setting JSON. Paste that below textbox and press Allow button.",
 			
-			"set-gen":"General",
-			"set-bgs":"Background",
-			"set-col":"Columns",
-			"set-gnb":"Bar General",
-			"set-adb":"Bar Advanced",
-			"set-xim":"Set Export/Import"
+			"set-gen":"General Set",
+			"set-bgs":"BG &amp; Header Edit",
+			"set-col":"Columns Edit",
+			"set-gnb":"General Bar Set",
+			"set-adb":"Advanced Bar Set",
+			"set-xim":"Set Export/Import",
+			"set-inf":"Overlay Information"
 		},
 		"columns":{
 			"encdps":"DPS",

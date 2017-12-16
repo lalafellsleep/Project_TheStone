@@ -1,1 +1,154 @@
+<script src="http://cleaveore.ffxiv.io/2.1.2/cleaveore.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script>
+    var last180 = [];
+    var lasth180 = [];
+    function onOverlayDataUpdate(e)
+    {
+        if(last180.length == 0)
+        {
+            $(".lasttime").html(e.detail.Encounter.duration);
+        }
+        if(last180.length < 2)
+        {
+            last180.push(0);
+            lasth180.push(0);
+        }
+        else
+        {
+            last180.push(parseInt(e.detail.Combatant.YOU.encdps));
+            lasth180.push(parseInt(e.detail.Combatant.YOU.enchps));
+        }
 
+        var item = "";
+        var itemh = "";
+
+        var rev = [];
+        var revh = [];
+        for(i = last180.length - 1; i > 0; i--)
+        {
+            rev.push(last180[i]);
+            revh.push(lasth180[i]);
+        }
+
+        for(i = 0; i < 181; i++)
+        {
+            if(rev[i] != undefined)
+            {
+                item += (400 - (i / 180 * 400)).toFixed(2) + "," + (200 - ((rev[i] / getMax()) * 200)).toFixed(2) + " ";
+                itemh += (400 - (i / 180 * 400)).toFixed(2) + "," + (200 - ((revh[i] / getMaxH()) * 200)).toFixed(2) + " ";
+            }
+            else
+            {
+                item += (400 - (i / 180 * 400)).toFixed(2) + ",201 ";
+                itemh += (400 - (i / 180 * 400)).toFixed(2) + ",201 ";
+            }
+        }
+
+        var x = 101 - (last180.length / 180 * 100);
+
+        $(".lasttime").css("left", x+"%");
+
+        if(x * $("#inner").width() < $("#inner").width() - 60)
+        {
+            $(".lasttime").hide();
+        }
+        else
+        {
+            $(".lasttime").show();
+        }
+
+        $(".currenttime").html(e.detail.Encounter.duration);
+        $("#dps").attr("points", item);
+        $("#hps").attr("points", itemh);
+        $("#title").html("AREA ID: " + e.detail.Encounter.CurrentZoneRaw);
+        $("#Encounter").html(e.detail.Encounter.title);
+        $("#DPS").html("MY DPS " + e.detail.Combatant.YOU.encdps);
+
+        if(e.detail.Encounter.title != "Encounter")
+        {
+            var iteme = JSON.parse(localStorage.getItem("ghostlog")).i;
+            if(iteme == undefined)
+            {
+                iteme = [];
+            }
+            var date = new Date();
+
+            var itx = {
+                "job":e.detail.Combatant.YOU.Job,
+                "zone":e.detail.Encounter.CurrentZoneRaw,
+                "dps":last180,
+                "hps":lasth180
+            };
+
+            iteme.push(itx);
+
+            localStorage.setItem("ghostlog" + date.getTime(), JSON.stringify(iteme));
+
+            //localStorage.setItem(date.getTime())
+
+            last180 = [];
+            lasth180 = [];
+        }
+    }
+
+    function saveLog()
+    {
+        localStorage.setItem("last180", last180.join(","));
+    }
+
+    function loadLog()
+    {
+        return localSotrage.getItem("last180").split(",");
+    }
+
+    function getMax()
+    {
+        var max = 0;
+        for(var i in last180)
+        {
+            if(max < last180[i])
+                max = last180[i]
+        }
+
+        return max;
+    }
+
+    function getMaxH()
+    {
+        var max = 0;
+        for(var i in lasth180)
+        {
+            if(max < lasth180[i])
+                max = lasth180[i]
+        }
+
+        return max;
+    }
+</script>
+<style>
+    html, body {margin:0px; padding:0px;}
+    body {position:fixed; left:8px; right:8px; bottom:8px; top:8px; padding:10 15px; font-family:"Consolas";}
+    body::after {position:absolute; z-index:-1; -webkit-filter:drop-shadow(0px 0px 4px #000); background:rgba(0,0,0,1); content:" "; left:0px; right:0px; bottom:0px; top:0px; opacity:.75;}
+    #inner {position:absolute; left:5px; top:32px; right:5px; bottom:5px; overflow:hidden; border:1px solid rgba(255,255,255,.5); font-size:12px;}
+    #title {position:Absolute; left:15px; top:0px; height:32px; line-height:32px; color:#FFF; font-size:14px;}
+    #Encounter {position:Absolute; left:125px; top:0px; height:32px; line-height:32px; color:#FFF; font-size:14px;}
+    #DPS {position:Absolute; right:15px; top:0px; height:32px; line-height:32px; color:#FFF; font-size:14px;}
+
+    .lasttime {color:#FFF; position:absolute; border:1px solid rgba(255,255,255,.5); padding-left:5px; padding-right:5px; bottom:-1px; left:100%; margin-left:-61px; width:50px; text-align:center;}
+
+    .currenttime {color:#FFF; position:absolute; right:-1px; padding-left:5px; padding-right:5px; border:1px solid rgba(255,255,255,.5); top:-1px; width:50px; text-align:center;}
+</style>
+<body>
+    <div id="title">AREA ID: 0</div>
+    <div id="Encounter">No Encounter Data</div>
+    <div id="DPS">MY DPS 0</div>
+    <div id="inner">
+        <div class="currenttime">00:00</div>
+        <div class="lasttime">00:00</div>
+        <svg viewbox="0 0 400 200" style="position:absolute; left:0px; width:100%; bottom:0px; height:100%;">
+            <polyline fill="none" stroke="rgba(255,96,96,.75)" stroke-width="1" points="" id="dps"/>
+            <polyline fill="none" stroke="rgba(96,255,96,.75)" stroke-width="1" points="" id="hps"/>
+        </svg>
+    </div>
+</body>

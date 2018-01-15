@@ -1,0 +1,3 @@
+[submodule "Amethyst/Latest"]
+	path = Amethyst/Latest
+	url = https://github.com/laiglinne-ff/cleaveore.FancyAmethyst.git

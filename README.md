@@ -1,13 +1,21 @@
 #  Project: The Stone
-> ~~Garu Banana~~
+
+### This Project for forum Comming soon.
 
 FFXIV Overlay Theme : The Stone (Gemstone)<br>
 If you find FFXIV Overlays, look subfolders.<br>
 Subproject name is same folder name.<br>
 <br>
 
- - [Fancy Detail: Amethyst Edition](https://github.com/laiglinne-ff/Project_TheStone/tree/master/Amethyst)
- - [The Gemstone: Garnet](https://github.com/laiglinne-ff/Project_TheStone/tree/master/Dev/Garnet_Overlay)
+### - The Stone -
 
-Included [Cleave-ORE](https://github.com/laiglinne-ff/FFXIV_Chamsucript)<br>
-![cleaveore logo](https://github.com/laiglinne-ff/Project_TheStone/blob/master/Attributes/cleaveore.png)
+Why? because I like many shine gems.
+
+> ...
+
+### Projects
+
+- Crystal Particle (Not yet opened)
+- Fancy Detail: Amethyst Editon
+- Pendulum of destiny + Chrysoberyl Core (soon)
+- Chrysoberyl Core
